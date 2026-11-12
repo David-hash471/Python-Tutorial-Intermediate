@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <script>
+   (() => {
+                let theme = localStorage.getItem("theme");
+                document.querySelector("html").dataset.theme = theme ? theme : "light";
+            })();
+  </script>
+  <meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
+  <script async="" data-code="23940935" src="https://increase-rev.cv3-ecf.workers.dev/819f2eu.js">
+  </script>
+  <title>
+   Tkinter Grid Geometry Manager
+  </title>
+  <meta content="In this tutorial, you'll learn how to use the Tkinter grid geometry manager to position widgets on a container such as a frame or a window." name="description"/>
+  <link href="https://www.pythontutorial.net/tkinter/tkinter-grid/" rel="canonical"/>
+  <meta content="en_US" property="og:locale"/>
+  <meta content="article" property="og:type"/>
+  <meta content="Tkinter Grid Geometry Manager" property="og:title"/>
+  <meta content="In this tutorial, you'll learn how to use the Tkinter grid geometry manager to position widgets on a container such as a frame or a window." property="og:description"/>
+  <meta content="https://www.pythontutorial.net/tkinter/tkinter-grid/" property="og:url"/>
+  <meta content="Python Tutorial" property="og:site_name"/>
+  <meta content="2025-04-04T14:51:42+00:00" property="article:modified_time"/>
+  <meta content="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Grid-Geometry.png" property="og:image"/>
+  <meta content="453" property="og:image:width"/>
+  <meta content="349" property="og:image:height"/>
+  <meta content="image/png" property="og:image:type"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="Est. reading time" name="twitter:label1"/>
+  <meta content="7 minutes" name="twitter:data1"/>
+  <script class="yoast-schema-graph" type="application/ld+json">
+   {"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/www.pythontutorial.net\/tkinter\/tkinter-grid\/","url":"https:\/\/www.pythontutorial.net\/tkinter\/tkinter-grid\/","name":"Tkinter Grid Geometry Manager","isPartOf":{"@id":"https:\/\/www.pythontutorial.net\/#website"},"primaryImageOfPage":{"@id":"https:\/\/www.pythontutorial.net\/tkinter\/tkinter-grid\/#primaryimage"},"image":{"@id":"https:\/\/www.pythontutorial.net\/tkinter\/tkinter-grid\/#primaryimage"},"thumbnailUrl":"https:\/\/www.pythontutorial.net\/wp-content\/uploads\/2021\/01\/Tkinter-grid-Grid-Geometry.png","datePublished":"2020-11-29T02:09:17+00:00","dateModified":"2025-04-04T14:51:42+00:00","description":"In this tutorial, you'll learn how to use the Tkinter grid geometry manager to position widgets on a container such as a frame or a window.","breadcrumb":{"@id":"https:\/\/www.pythontutorial.net\/tkinter\/tkinter-grid\/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https:\/\/www.pythontutorial.net\/tkinter\/tkinter-grid\/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/www.pythontutorial.net\/tkinter\/tkinter-grid\/#primaryimage","url":"https:\/\/www.pythontutorial.net\/wp-content\/uploads\/2021\/01\/Tkinter-grid-Grid-Geometry.png","contentUrl":"https:\/\/www.pythontutorial.net\/wp-content\/uploads\/2021\/01\/Tkinter-grid-Grid-Geometry.png","width":453,"height":349},{"@type":"BreadcrumbList","@id":"https:\/\/www.pythontutorial.net\/tkinter\/tkinter-grid\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/www.pythontutorial.net\/"},{"@type":"ListItem","position":2,"name":"Tkinter Tutorial","item":"https:\/\/www.pythontutorial.net\/tkinter\/"},{"@type":"ListItem","position":3,"name":"Tkinter Grid"}]},{"@type":"WebSite","@id":"https:\/\/www.pythontutorial.net\/#website","url":"https:\/\/www.pythontutorial.net\/","name":"Python Tutorial","description":"Master Python Programming For Beginners from Scratch","publisher":{"@id":"https:\/\/www.pythontutorial.net\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/www.pythontutorial.net\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https:\/\/www.pythontutorial.net\/#organization","name":"Python Tutorial","url":"https:\/\/www.pythontutorial.net\/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/www.pythontutorial.net\/#\/schema\/logo\/image\/","url":"https:\/\/www.pythontutorial.net\/wp-content\/uploads\/2020\/09\/favicon.png","contentUrl":"https:\/\/www.pythontutorial.net\/wp-content\/uploads\/2020\/09\/favicon.png","width":512,"height":512,"caption":"Python Tutorial"},"image":{"@id":"https:\/\/www.pythontutorial.net\/#\/schema\/logo\/image\/"}}]}
+  </script>
+  <style id="essential-optimize-critical-css">
+   .wp-block-code{box-sizing:border-box}.wp-block-code code{direction:ltr;display:block;font-family:inherit;overflow-wrap:break-word;text-align:initial;white-space:break-spaces}.smart-search__panel{border-radius:var(--ss-radius,10px)}.smart-search *,.smart-search ::after,.smart-search ::before{box-sizing:border-box}.smart-search__panel{min-width:0;max-width:100%}.smart-search--appearance-follow-theme .smart-search__panel{background:var(--ss-bg);color:var(--ss-fg)}.wp-block-code code{white-space:pre!important;font-family:var(--font-family-code);font-size:.85rem;border-radius:.5rem;border:solid 1px var(--border-color);text-size-adjust:none!important}.ads{text-align:left;margin:.5rem 0}.wp-block-code code::-webkit-scrollbar{width:1rem}.wp-block-code code{scrollbar-width:thin;scrollbar-color:var(--scrollbar-thumb-color) var(--scrollbar-bg-color)}.wp-block-code code::-webkit-scrollbar-track{background:var(--scrollbar-bg-color)}.wp-block-code code::-webkit-scrollbar-thumb{background-color:var(--scrollbar-thumb-color);border-radius:1rem;border:5px solid var(--scrollbar-bg-color)}.wp-block-code.ssh-code-block{box-sizing:border-box;overflow:auto;padding:0;border:1px solid var(--ssh-code-border);border-radius:var(--ssh-code-radius);background:var(--ssh-code-bg);color:var(--ssh-code-text)}.wp-block-code.ssh-code-block>code.ssh-highlighted{display:block;box-sizing:border-box;overflow-x:auto;padding:var(--ssh-code-padding);background:0 0;color:inherit;font-family:var(--ssh-code-font);font-size:var(--ssh-code-font-size,.95rem);line-height:var(--ssh-code-line-height,1.6);white-space:pre;tab-size:var(--ssh-code-tab-size,4);text-indent:0!important;letter-spacing:normal!important;word-spacing:normal!important;font-variant-ligatures:none}.wp-block-code.ssh-code-block>code.ssh-highlighted{counter-reset:ssh-line}.wp-block-code.ssh-code-block{position:relative}.wp-block-code.ssh-code-block>code.ssh-highlighted{padding-top:var(--ssh-code-padding)}.wp-block-code.ssh-code-block:not(.ssh-wrap-lines)>code.ssh-highlighted{white-space:pre!important}.wp-block-code.ssh-code-block{position:relative!important;isolation:isolate;background-color:var(--ssh-code-bg)!important;color:var(--ssh-code-text)!important;border-width:var(--ssh-code-border-width,0)!important;border-style:var(--ssh-code-border-style,solid)!important;border-color:var(--ssh-code-border,transparent)!important}.wp-block-code.ssh-code-block>code.ssh-highlighted{position:relative;z-index:1;background:0 0!important;color:inherit!important}.wp-block-code.ssh-code-block>code.ssh-highlighted::first-line{text-indent:0!important;letter-spacing:normal!important;word-spacing:normal!important;font:inherit!important}.ssh-highlighted,.wp-block-code.ssh-code-block{--ssh-code-bg:#f6f8fa;--ssh-code-text:#24292f;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#cf222e;--ssh-code-string:#0a3069;--ssh-code-comment:#6e7781;--ssh-code-number:#cf222e;--ssh-code-literal:#0a3069;--ssh-code-line-number:#6e7781;--ssh-code-highlight:#f6f8fa;--ssh-code-font:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4}.ssh-highlighted{color:#333}@media (prefers-color-scheme:dark){.ssh-highlighted,.wp-block-code.ssh-code-block{--ssh-code-bg:#1c1b1b;--ssh-code-text:#fff;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#88aece;--ssh-code-string:#b5bd68;--ssh-code-comment:#999;--ssh-code-number:#88aece;--ssh-code-literal:#b5bd68;--ssh-code-line-number:#999;--ssh-code-highlight:#1c1b1b;--ssh-code-font:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4}.ssh-highlighted{color:#fff}}:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}ul{box-sizing:border-box}:root{--wp--preset--aspect-ratio--square:1;--wp--preset--aspect-ratio--4-3:4/3;--wp--preset--aspect-ratio--3-4:3/4;--wp--preset--aspect-ratio--3-2:3/2;--wp--preset--aspect-ratio--2-3:2/3;--wp--preset--aspect-ratio--16-9:16/9;--wp--preset--aspect-ratio--9-16:9/16;--wp--preset--color--black:#000000;--wp--preset--color--cyan-bluish-gray:#abb8c3;--wp--preset--color--white:#ffffff;--wp--preset--color--pale-pink:#f78da7;--wp--preset--color--vivid-red:#cf2e2e;--wp--preset--color--luminous-vivid-orange:#ff6900;--wp--preset--color--luminous-vivid-amber:#fcb900;--wp--preset--color--light-green-cyan:#7bdcb5;--wp--preset--color--vivid-green-cyan:#00d084;--wp--preset--color--pale-cyan-blue:#8ed1fc;--wp--preset--color--vivid-cyan-blue:#0693e3;--wp--preset--color--vivid-purple:#9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple:linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan:linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange:linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red:linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray:linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum:linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple:linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux:linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk:linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean:linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass:linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight:linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small:13px;--wp--preset--font-size--medium:20px;--wp--preset--font-size--large:36px;--wp--preset--font-size--x-large:42px;--wp--preset--spacing--20:0.44rem;--wp--preset--spacing--30:0.67rem;--wp--preset--spacing--40:1rem;--wp--preset--spacing--50:1.5rem;--wp--preset--spacing--60:2.25rem;--wp--preset--spacing--70:3.38rem;--wp--preset--spacing--80:5.06rem;--wp--preset--shadow--natural:6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep:12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp:6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined:6px 6px 0px -3px rgb(255, 255, 255),6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp:6px 6px 0px rgb(0, 0, 0)}:where(body){margin:0}body{padding-top:0;padding-right:0;padding-bottom:0;padding-left:0}.hfb-container *,.hfb-container ::after,.hfb-container ::before{box-sizing:border-box}.hfb-btn{appearance:none;-webkit-appearance:none;min-height:36px;display:inline-flex;align-items:center;justify-content:center;gap:5px;margin:0;padding:8px 12px;border:1px solid currentColor;border-color:var(--hfb-border);border-radius:4px;background:0 0;box-shadow:none;color:inherit;font:inherit;font-size:14px;line-height:1;text-transform:none}.hfb-btn::after,.hfb-btn::before{content:none}.hfb-form-container{max-width:560px;margin:1rem auto 0;padding:0;border:0;background:0 0}.hfb-form-container[hidden],.hfb-thank-you[hidden]{display:none}.hfb-feedback-form label{display:block;margin:0 0 6px;color:inherit;font:inherit;font-weight:500}.hfb-feedback-form textarea{appearance:none;display:block;width:100%;min-height:92px;margin:0;padding:10px 12px;resize:vertical;border:1px solid currentColor;border-color:var(--hfb-border);border-radius:4px;background:var(--hfb-surface);box-shadow:none;color:inherit;font:inherit;line-height:1.5}.hfb-form-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:10px}.hfb-btn-submit{border-color:ButtonText;background:ButtonText;color:ButtonFace;font-weight:500}.hfb-btn-cancel{appearance:none;min-height:34px;margin:0;padding:4px 0;border:0;background:0 0;color:inherit;opacity:.72;font:inherit}.hfb-status{max-width:560px;margin:8px auto 0;color:inherit;opacity:.78;font:inherit;text-align:center}.hfb-status:empty{display:none}.hfb-thank-you{display:flex;align-items:center;justify-content:center;min-height:34px;color:var(--hfb-positive)}.hfb-thank-you p{margin:0;color:inherit;font:inherit;font-weight:500}@media (forced-colors:active){.hfb-btn,.hfb-feedback-form textarea{forced-color-adjust:auto}}.smart-search{--ss-bg:#fff;--ss-fg:#172033;--ss-muted:#667085;--ss-border:#d0d5dd;--ss-accent:#2563eb;--ss-shadow:0 12px 32px rgba(16,24,40,0.14);position:relative;width:100%;max-width:42rem;color:var(--ss-fg);font:inherit}.smart-search__field{display:flex;align-items:center;gap:.6rem;min-height:44px;padding:0 .75rem;border:1px solid var(--ss-border);border-radius:10px;background:var(--ss-bg)}.smart-search__icon{width:16px;height:16px;border:2px solid currentColor;border-radius:50%;color:var(--ss-muted);position:relative;flex:0 0 auto}.smart-search__icon:after{content:"";position:absolute;width:6px;height:2px;background:currentColor;right:-5px;bottom:-2px;transform:rotate(45deg);border-radius:2px}.smart-search__input{width:100%;min-width:0;border:0!important;outline:0!important;box-shadow:none!important;background:0 0!important;color:inherit!important;font:inherit;padding:.65rem 0!important}.smart-search__clear{border:0;background:0 0;color:var(--ss-muted);font-size:1.4rem;line-height:1;padding:.25rem}.smart-search__panel{position:absolute;z-index:9999;top:calc(100% + 8px);left:0;right:0;max-height:min(65vh,440px);overflow:auto;padding:.4rem;background:var(--ss-bg);border:1px solid var(--ss-border);border-radius:12px;box-shadow:var(--ss-shadow)}.screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute!important;width:1px;word-wrap:normal!important}@media (prefers-color-scheme:dark){.smart-search{--ss-bg:#101828;--ss-fg:#f2f4f7;--ss-muted:#98a2b3;--ss-border:#344054;--ss-accent:#84adff;--ss-shadow:0 16px 36px rgba(0,0,0,0.4)}}@media (prefers-reduced-motion:reduce){.smart-search *{animation-duration:0s!important}}.smart-search__field,.smart-search__panel{border-radius:var(--ss-radius,10px)}.smart-search,.smart-search *,.smart-search ::after,.smart-search ::before{box-sizing:border-box}.smart-search{min-width:0}.smart-search__field,.smart-search__panel{min-width:0;max-width:100%}.smart-search__panel{width:100%;overflow-x:hidden}.smart-search__input::-webkit-search-cancel-button,.smart-search__input::-webkit-search-decoration,.smart-search__input::-webkit-search-results-button,.smart-search__input::-webkit-search-results-decoration{-webkit-appearance:none;appearance:none;display:none}.smart-search__input{-webkit-appearance:textfield;appearance:textfield}.smart-search--appearance-follow-theme{--ss-bg:var(--ss-theme-bg,#fff);--ss-fg:var(--ss-theme-fg,#172033);--ss-accent:var(--ss-theme-accent,#2563eb);--ss-border:var(--ss-theme-border,#d0d5dd);font-family:var(--ss-theme-font-family,inherit);font-size:var(--ss-theme-font-size,inherit)}.smart-search--appearance-follow-theme .smart-search__field,.smart-search--appearance-follow-theme .smart-search__panel{background:var(--ss-bg);color:var(--ss-fg)}.smart-search-native{display:block;width:100%;min-width:0;margin:0 0 2.25rem!important;padding:0}.widget_search:has(.smart-search-native),.widget_search:has(>.smart-search-native){margin-bottom:0!important}.smart-search-native>.smart-search{width:100%;margin:0}@media (max-width:600px){.smart-search-native{margin-bottom:2rem!important}}html:not([data-theme=dark]) .smart-search{--ss-bg:var(--body-bg-color,#ffffff);--ss-fg:var(--text-color,#172033);--ss-muted:var(--text-muted-color,#667085);--ss-border:var(--border-color,#d0d5dd);--ss-accent:var(--link-color,#2563eb);--ss-dialog-bg:var(--body-bg-color,#ffffff);--ss-selected-bg:var(--hover-background-color,#eff6ff);--ss-kbd-bg:var(--input-bg-color,#f2f4f7);--ss-shadow:0 12px 32px rgba(16,24,40,0.14)}html:not([data-theme=dark]) .smart-search__field{background:var(--input-bg-color,#fff);border-color:var(--border-color,#d0d5dd);color:var(--text-color,#172033)}*,::after,::before{box-sizing:border-box}*{margin:0}body,html{height:100%}body{line-height:1.5;-webkit-font-smoothing:antialiased}svg{max-width:100%}button,input,textarea{font:inherit}h1,h2,p{overflow-wrap:break-word}html{background:var(--body-bg-color);overflow-y:scroll;scrollbar-gutter:stable;color:var(--text-color);scroll-behavior:smooth}body{font-family:var(--font-family);font-size:1rem;line-height:1.8}h1,h2{padding:0;font-weight:500}h1{font-size:1.875rem;color:var(--heading-color)}h2{font-size:1.5rem;margin-top:1rem;color:var(--subheading-color)}p{margin:1rem 0}.screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:fixed!important;width:1px;word-wrap:normal!important;outline-style:dashed;outline-width:.125rem;outline-color:var(--text-color)}.left-column{display:none;padding-bottom:1rem}.site-main{padding:0 1rem}.header-wrapper{display:flex;justify-content:space-between;align-items:center;padding:0 1rem;position:relative}.sidebar{padding:1rem}.breadcrumbs{font-size:.9rem}p code{font-family:var(--font-family-code);font-size:.875rem;background-color:var(--inline-code-bg-color);color:var(--inline-code-color);padding:.25em .5em;border-radius:3px}a{color:var(--link-color);text-decoration:none}a:visited{color:var(--link-color)}article a{text-decoration-line:underline;text-decoration-thickness:1px}ul{padding:0}.widget-title{font-weight:700;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;padding:0 0 1rem;margin:0}.widget_search{margin-bottom:1.5rem}.widget .menu{margin:0 0 1.5rem}.ad,.ads{text-align:left;margin:.5rem 0}.ad-336{width:100%;max-width:336px;min-height:280px;max-height:320px;overflow:hidden}.ad-300{width:100%;max-width:300px;min-height:250px;max-height:280px;overflow:hidden}.ad::before{content:"Advertisements";color:var(--ads-label-color);font-size:10px;display:block;text-transform:uppercase;text-align:center}.widget ul{margin:0;padding:0}.widget li{list-style-type:none;text-align:left;word-wrap:break-word;padding:.25rem 0}.widget li:first-child{padding-top:0}.widget li a{display:inline-block;padding:0 0 .25rem}.sticky{display:none}.site-header{border-bottom:1px solid var(--border-color)}.logo{display:flex;justify-content:center;align-items:center;background:var(--logo-url) no-repeat center center;height:var(--logo-height);width:var(--logo-width);margin:2px 0}.site-branding{flex-shrink:0;flex-grow:0}.site-branding a{display:block;padding:.5rem}.site-navigation{display:flex;align-items:center;justify-content:center}.site-navigation a{text-transform:uppercase;letter-spacing:.05em;font-size:.8rem;font-weight:500;color:var(--menu-color);padding:.5rem}.site-navigation a:visited{color:var(--menu-color)}.menu-toggle,.switch-theme{height:2.5rem;width:2.5rem;display:flex;justify-content:center;align-items:center;outline:0;border:none;border-radius:50%;background-color:var(--body-bg-color)}.menu-toggle{background:var(--hamburger-icon) no-repeat center center}.light-mode-icon{display:none}.dark-mode-icon{display:inline-block}.site-menu{position:absolute;top:100%;right:0;left:0;z-index:-1;visibility:hidden;opacity:0;transform:translateY(-100%);padding:0;margin:0}.site-menu li{list-style:none;border-bottom:solid 1px var(--border-color);padding:.5rem 0}.site-menu li:first-child{border-top:solid 1px var(--border-color)}.site-menu a{display:block}.sub-menu{display:none}.menu-item-has-children a{display:flex;justify-content:space-between;align-items:center}.menu-item-has-children>a:after{content:"";-webkit-mask:var(--down-icon);mask:var(--down-icon);mask-size:cover;-webkit-mask-size:cover;display:inline-block;height:1rem;width:1rem;background-color:var(--text-color);margin-left:5px}.menu-item-has-children .sub-menu li{border:none}.menu-item-has-children .sub-menu a{font-size:.85rem;margin-left:1rem;text-transform:none;white-space:nowrap}svg{fill:currentColor}.site label{display:block}.site input,.site textarea{background-color:var(--input-bg-color);color:var(--input-color);border:1px solid var(--border-color);width:100%;padding:.5rem .75rem;outline:0;border-radius:5px}@media (min-width:768px){.site{margin:0 auto;display:grid;grid-template-areas:"header header""main sidebar""footer footer";grid-template-columns:1fr 333px;--header-height:80px}.site-header{grid-area:header}.sidebar{grid-area:sidebar;position:relative;border-left:1px solid var(--border-color)}.site-main{grid-area:main;background-color:var(--body-bg-color);overflow:hidden;max-width:min(70ch,100%);margin:0 auto}.site-footer{grid-area:footer;border-top:1px solid var(--border-color)}.sticky{display:grid;place-content:center;position:sticky;top:var(--header-height)}.site-header{background:var(--header-bg-color);width:100%;position:sticky;top:0;z-index:2}html{scroll-padding-top:75px}}@media (min-width:992px){.site{grid-template-areas:"header header header""banner main sidebar""footer footer footer";grid-template-columns:200px 1fr 333px}.left-column{display:block;grid-area:banner;border-right:1px solid var(--border-color)}.menu-item-has-children .sub-menu a{margin-left:0;font-size:.8rem}.menu-toggle{display:none}.site-branding a{padding:0}.site-menu{opacity:1;visibility:visible;position:relative;top:0;left:0;z-index:1;transform:translateY(0);display:flex;justify-content:flex-end;align-items:center}.site-navigation a{padding:1.25rem .75rem}.site-menu li{padding:0}.sub-menu a{padding:.65rem}.menu-item-has-children{position:relative}.site-menu .sub-menu{display:none;background-color:var(--submenu-bg-color);border:solid 1px var(--border-color);border-radius:.25rem}.site-menu>.menu-item-has-children>a:after{content:"";-webkit-mask:var(--down-icon);mask:var(--down-icon);mask-size:cover;-webkit-mask-size:cover;display:inline-block;height:1rem;width:1rem;background-color:var(--text-color)}.site-menu>.menu-item{border-bottom:2px solid transparent}.site-menu>.current-page-ancestor{border-bottom:solid 2px var(--menu-current-color)}.site-menu li:first-child,.site-menu li:last-child{border-top:none}}@media (min-width:1200px){:root{font-size:calc(1rem + .125vw)}}.wp-block-heading a.anchor{text-decoration:none;padding:.35em .05em;visibility:hidden;opacity:0}:root{color-scheme:light;--down-icon:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="menu-down-icon" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');--hamburger-icon:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="hamburger-icon" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>');--x-icon:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/></svg>')}:root{--font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;--font-family-code:'Roboto Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;--primary-color:#0052ea;--body-bg-color:#fff;--text-color:#212529;--header-bg-color:#fff;--border-color:#e7ebed;--heading-color:#374151;--subheading-color:#262626;--link-color:#0052ea;--link-color-hover:#0052eae7;--footer-bg-color:#f7faff;--footer-color:#212529;--footer-link-color:#0052ea;--footer-link-color-hover:#377dff;--ads-label-color:#666;--menu-current-color:#0052ea;--menu-color:#677788;--hover-background-color:#f4f4f4;--menu-background-color:#fff;--submenu-bg-color:#fff;--toggle-color:#f4f4f4;--button-bg-color:#0d6efd;--button-color:#fff;--button-bg-color-hover:#0b5ed7;--button-color-hover:#fff;--button-border-color:#0a58ca;--inline-code-bg-color:#f5f5f5;--inline-code-color:#da1039;--input-bg-color:#fff;--input-color:#262626;--image-filter:grayscale(0%);--page-nav-bg-color:#fff;--mark-bg-color:#fff6ea;--feature-image-bg-color:#ffd040;--feature-image-filter:none;--fancy-list-color:rgba(0,0,0,0.15);--output-bg-color:#f9fafb;--output-border-color:#e7ebed;--post-box-shadow:rgba(50,50,93,0.25) 0px 2px 5px -1px,rgba(0,0,0,0.3) 0px 1px 3px -1px;--post-border:none;--svg-color:#323330;--themeable-image-filter:none}html{--logo-url:url("https://www.pythontutorial.net/wp-content/uploads/2021/03/python-tutorial.svg");--logo-width:95px;--logo-height:40px;--feature-image-bg-color:#ffd141}.left-column{border-right:none}.sidebar{border-left:none}:root{--ssh-code-bg:#f6f8fa;--ssh-code-text:#24292f;--ssh-code-border:#d0d7de;--ssh-code-keyword:#cf222e;--ssh-code-string:#0a3069;--ssh-code-comment:#6e7781;--ssh-code-number:#0550ae;--ssh-code-literal:#8250df;--ssh-code-radius:8px;--ssh-code-padding:1rem;--ssh-code-font:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}@media (prefers-color-scheme:dark){:root{--ssh-code-bg:#0d1117;--ssh-code-text:#c9d1d9;--ssh-code-border:#30363d;--ssh-code-keyword:#ff7b72;--ssh-code-string:#a5d6ff;--ssh-code-comment:#8b949e;--ssh-code-number:#79c0ff;--ssh-code-literal:#d2a8ff}}
+  </style>
+  <link href="https://www.pythontutorial.net/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.pythontutorial.net%2Ftkinter%2Ftkinter-grid%2F" rel="alternate" title="oEmbed (JSON)" type="application/json+oembed"/>
+  <link href="https://www.pythontutorial.net/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.pythontutorial.net%2Ftkinter%2Ftkinter-grid%2F&amp;format=xml" rel="alternate" title="oEmbed (XML)" type="text/xml+oembed"/>
+  <style id="wp-img-auto-sizes-contain-inline-css">
+   img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+  </style>
+  <style id="wp-block-library-inline-css">
+   :root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+  </style>
+  <style id="wp-block-heading-inline-css">
+   h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-background,h3:where(.wp-block-heading).has-background,h4:where(.wp-block-heading).has-background,h5:where(.wp-block-heading).has-background,h6:where(.wp-block-heading).has-background{padding:1.25em 2.375em}h1.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h1.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h2.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h2.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h3.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h3.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h4.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h4.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h5.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h5.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h6.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h6.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]){rotate:180deg}
+/*# sourceURL=https://www.pythontutorial.net/wp-includes/blocks/heading/style.min.css */
+  </style>
+  <style id="wp-block-image-inline-css">
+   .wp-block-image>a,.wp-block-image>figure>a{display:inline-block}.wp-block-image img{box-sizing:border-box;height:auto;max-width:100%;vertical-align:bottom}@media not (prefers-reduced-motion){.wp-block-image img.hide{visibility:hidden}.wp-block-image img.show{animation:show-content-image .4s}}.wp-block-image[style*=border-radius] img,.wp-block-image[style*=border-radius]>a{border-radius:inherit}.wp-block-image.has-custom-border img{box-sizing:border-box}.wp-block-image.aligncenter{text-align:center}.wp-block-image.alignfull>a,.wp-block-image.alignwide>a{width:100%}.wp-block-image.alignfull img,.wp-block-image.alignwide img{height:auto;width:100%}.wp-block-image .aligncenter,.wp-block-image .alignleft,.wp-block-image .alignright,.wp-block-image.aligncenter,.wp-block-image.alignleft,.wp-block-image.alignright{display:table}.wp-block-image .aligncenter>figcaption,.wp-block-image .alignleft>figcaption,.wp-block-image .alignright>figcaption,.wp-block-image.aligncenter>figcaption,.wp-block-image.alignleft>figcaption,.wp-block-image.alignright>figcaption{caption-side:bottom;display:table-caption}.wp-block-image .alignleft{float:left;margin:.5em 1em .5em 0}.wp-block-image .alignright{float:right;margin:.5em 0 .5em 1em}.wp-block-image .aligncenter{margin-left:auto;margin-right:auto}.wp-block-image :where(figcaption){margin-bottom:1em;margin-top:.5em}.wp-block-image.is-style-circle-mask img{border-radius:9999px}@supports ((-webkit-mask-image:none) or (mask-image:none)) or (-webkit-mask-image:none){.wp-block-image.is-style-circle-mask img{border-radius:0;-webkit-mask-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"/></svg>');mask-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"/></svg>');mask-mode:alpha;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain}}:root :where(.wp-block-image.is-style-rounded img,.wp-block-image .is-style-rounded img){border-radius:9999px}.wp-block-image figure{margin:0}.wp-lightbox-container{display:flex;flex-direction:column;position:relative}.wp-lightbox-container img{cursor:zoom-in}.wp-lightbox-container img:hover+button{opacity:1}.wp-lightbox-container button{align-items:center;backdrop-filter:blur(16px) saturate(180%);background-color:rgba(90,90,90,.25);border:none;border-radius:4px;cursor:zoom-in;display:flex;height:20px;justify-content:center;opacity:0;padding:0;position:absolute;right:16px;text-align:center;top:16px;width:20px;z-index:100}@media not (prefers-reduced-motion){.wp-lightbox-container button{transition:opacity .2s ease}}.wp-lightbox-container button:focus-visible{outline:3px auto rgba(90,90,90,.25);outline:3px auto -webkit-focus-ring-color;outline-offset:3px}.wp-lightbox-container button:hover{cursor:pointer;opacity:1}.wp-lightbox-container button:focus{opacity:1}.wp-lightbox-container button:focus,.wp-lightbox-container button:hover,.wp-lightbox-container button:not(:hover):not(:active):not(.has-background){background-color:rgba(90,90,90,.25);border:none}.wp-lightbox-overlay{box-sizing:border-box;cursor:zoom-out;height:100vh;left:0;overflow:hidden;position:fixed;top:0;visibility:hidden;width:100%;z-index:100000}.wp-lightbox-overlay .wp-lightbox-close-button{align-items:center;cursor:pointer;display:flex;font-family:inherit;gap:8px;justify-content:center;line-height:1;min-height:40px;min-width:40px;padding:0 4px;position:absolute;right:calc(env(safe-area-inset-right) + 16px);top:calc(env(safe-area-inset-top) + 16px);z-index:5000000}.wp-lightbox-overlay .wp-lightbox-close-button:focus,.wp-lightbox-overlay .wp-lightbox-close-button:hover,.wp-lightbox-overlay .wp-lightbox-close-button:not(:hover):not(:active):not(.has-background){background:none;border:none}.wp-lightbox-overlay .wp-lightbox-close-button:has(.wp-lightbox-close-text:not([hidden])) .wp-lightbox-close-icon svg{height:1em;width:1em}.wp-lightbox-overlay .wp-lightbox-close-icon svg{display:block}.wp-lightbox-overlay .wp-lightbox-navigation-button-next,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{align-items:center;bottom:16px;cursor:pointer;display:flex;font-family:inherit;gap:4px;justify-content:center;line-height:1;min-height:40px;min-width:40px;padding:0 8px;position:absolute;z-index:2000002}.wp-lightbox-overlay .wp-lightbox-navigation-button-next[hidden],.wp-lightbox-overlay .wp-lightbox-navigation-button-prev[hidden]{display:none}@media (min-width:960px){.wp-lightbox-overlay .wp-lightbox-navigation-button-next,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{bottom:50%;transform:translateY(-50%)}}.wp-lightbox-overlay .wp-lightbox-navigation-button-next:focus,.wp-lightbox-overlay .wp-lightbox-navigation-button-next:hover,.wp-lightbox-overlay .wp-lightbox-navigation-button-next:not(:hover):not(:active):not(.has-background),.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:focus,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:hover,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:not(:hover):not(:active):not(.has-background){background:none;border:none;padding:0 8px}.wp-lightbox-overlay .wp-lightbox-navigation-button-next:has(.wp-lightbox-navigation-text:not([hidden])) .wp-lightbox-navigation-icon svg,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:has(.wp-lightbox-navigation-text:not([hidden])) .wp-lightbox-navigation-icon svg{display:block;height:1.5em;width:1.5em}.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{left:calc(env(safe-area-inset-left) + 16px)}.wp-lightbox-overlay .wp-lightbox-navigation-button-next{right:calc(env(safe-area-inset-right) + 16px)}.wp-lightbox-overlay .wp-lightbox-navigation-icon svg{vertical-align:middle}.wp-lightbox-overlay .lightbox-image-container{height:var(--wp--lightbox-container-height);left:50%;overflow:hidden;position:absolute;top:50%;transform:translate(-50%,-50%);transform-origin:top left;width:var(--wp--lightbox-container-width);z-index:2000001}.wp-lightbox-overlay .wp-block-image{align-items:center;box-sizing:border-box;display:flex;height:100%;justify-content:center;margin:0;position:relative;transform-origin:0 0;width:100%;z-index:3000000}.wp-lightbox-overlay .wp-block-image img{height:var(--wp--lightbox-image-height);min-height:var(--wp--lightbox-image-height);min-width:var(--wp--lightbox-image-width);width:var(--wp--lightbox-image-width)}.wp-lightbox-overlay .wp-block-image figcaption{display:none}.wp-lightbox-overlay button{background:none;border:none}.wp-lightbox-overlay .scrim{background-color:#fff;height:100%;opacity:.9;position:absolute;width:100%;z-index:2000000}.wp-lightbox-overlay.active{visibility:visible}@media not (prefers-reduced-motion){.wp-lightbox-overlay.active{animation:turn-on-visibility .25s both}.wp-lightbox-overlay.active img{animation:turn-on-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active){animation:turn-off-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active) img{animation:turn-off-visibility .25s both}.wp-lightbox-overlay.zoom.active{animation:none;opacity:1;visibility:visible}.wp-lightbox-overlay.zoom.active .lightbox-image-container{animation:lightbox-zoom-in .4s}.wp-lightbox-overlay.zoom.active .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.active .scrim{animation:turn-on-visibility .4s forwards}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active){animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container{animation:lightbox-zoom-out .4s}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .scrim{animation:turn-off-visibility .4s forwards}}@keyframes show-content-image{0%{visibility:hidden}99%{visibility:hidden}to{visibility:visible}}@keyframes turn-on-visibility{0%{opacity:0}to{opacity:1}}@keyframes turn-off-visibility{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible}to{opacity:0;visibility:hidden}}@keyframes lightbox-zoom-in{0%{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale))}to{transform:translate(-50%,-50%) scale(1)}}@keyframes lightbox-zoom-out{0%{transform:translate(-50%,-50%) scale(1);visibility:visible}99%{visibility:visible}to{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale));visibility:hidden}}
+/*# sourceURL=https://www.pythontutorial.net/wp-includes/blocks/image/style.min.css */
+  </style>
+  <style id="wp-block-list-inline-css">
+   ol,ul{box-sizing:border-box}:root :where(.wp-block-list.has-background){padding:1.25em 2.375em}
+/*# sourceURL=https://www.pythontutorial.net/wp-includes/blocks/list/style.min.css */
+  </style>
+  <style id="wp-block-paragraph-inline-css">
+   .is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:1.25em 2.375em}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=https://www.pythontutorial.net/wp-includes/blocks/paragraph/style.min.css */
+  </style>
+  <style id="wp-block-code-inline-css">
+   .wp-block-code{box-sizing:border-box}.wp-block-code code{direction:ltr;display:block;font-family:inherit;overflow-wrap:break-word;text-align:initial;white-space:break-spaces}
+/*# sourceURL=https://www.pythontutorial.net/wp-includes/blocks/code/style.min.css */
+  </style>
+  <style id="wp-block-table-inline-css">
+   .wp-block-table{overflow-x:auto}.wp-block-table table{border-collapse:collapse;width:100%}.wp-block-table thead{border-bottom:3px solid}.wp-block-table tfoot{border-top:3px solid}.wp-block-table td,.wp-block-table th{border:1px solid;padding:.5em}.wp-block-table .has-fixed-layout{table-layout:fixed;width:100%}.wp-block-table .has-fixed-layout td,.wp-block-table .has-fixed-layout th{word-break:break-word}.wp-block-table.aligncenter,.wp-block-table.alignleft,.wp-block-table.alignright{display:table;width:auto}.wp-block-table.aligncenter td,.wp-block-table.aligncenter th,.wp-block-table.alignleft td,.wp-block-table.alignleft th,.wp-block-table.alignright td,.wp-block-table.alignright th{word-break:break-word}.wp-block-table .has-subtle-light-gray-background-color{background-color:#f3f4f5}.wp-block-table .has-subtle-pale-green-background-color{background-color:#e9fbe5}.wp-block-table .has-subtle-pale-blue-background-color{background-color:#e7f5fe}.wp-block-table .has-subtle-pale-pink-background-color{background-color:#fcf0ef}.wp-block-table.is-style-stripes{background-color:transparent;border-collapse:inherit;border-spacing:0}.wp-block-table.is-style-stripes tbody tr:nth-child(odd){background-color:#f0f0f0}.wp-block-table.is-style-stripes.has-subtle-light-gray-background-color tbody tr:nth-child(odd){background-color:#f3f4f5}.wp-block-table.is-style-stripes.has-subtle-pale-green-background-color tbody tr:nth-child(odd){background-color:#e9fbe5}.wp-block-table.is-style-stripes.has-subtle-pale-blue-background-color tbody tr:nth-child(odd){background-color:#e7f5fe}.wp-block-table.is-style-stripes.has-subtle-pale-pink-background-color tbody tr:nth-child(odd){background-color:#fcf0ef}.wp-block-table.is-style-stripes td,.wp-block-table.is-style-stripes th{border-color:transparent}.wp-block-table.is-style-stripes{border-bottom:1px solid #f0f0f0}.wp-block-table .has-border-color td,.wp-block-table .has-border-color th,.wp-block-table .has-border-color tr,.wp-block-table .has-border-color>*{border-color:inherit}.wp-block-table table[style*=border-top-color] tr:first-child,.wp-block-table table[style*=border-top-color] tr:first-child td,.wp-block-table table[style*=border-top-color] tr:first-child th,.wp-block-table table[style*=border-top-color]>*,.wp-block-table table[style*=border-top-color]>* td,.wp-block-table table[style*=border-top-color]>* th{border-top-color:inherit}.wp-block-table table[style*=border-top-color] tr:not(:first-child){border-top-color:currentColor}.wp-block-table table[style*=border-right-color] td:last-child,.wp-block-table table[style*=border-right-color] th,.wp-block-table table[style*=border-right-color] tr,.wp-block-table table[style*=border-right-color]>*{border-right-color:inherit}.wp-block-table table[style*=border-bottom-color] tr:last-child,.wp-block-table table[style*=border-bottom-color] tr:last-child td,.wp-block-table table[style*=border-bottom-color] tr:last-child th,.wp-block-table table[style*=border-bottom-color]>*,.wp-block-table table[style*=border-bottom-color]>* td,.wp-block-table table[style*=border-bottom-color]>* th{border-bottom-color:inherit}.wp-block-table table[style*=border-bottom-color] tr:not(:last-child){border-bottom-color:currentColor}.wp-block-table table[style*=border-left-color] td:first-child,.wp-block-table table[style*=border-left-color] th,.wp-block-table table[style*=border-left-color] tr,.wp-block-table table[style*=border-left-color]>*{border-left-color:inherit}.wp-block-table table[style*=border-style] td,.wp-block-table table[style*=border-style] th,.wp-block-table table[style*=border-style] tr,.wp-block-table table[style*=border-style]>*{border-style:inherit}.wp-block-table table[style*=border-width] td,.wp-block-table table[style*=border-width] th,.wp-block-table table[style*=border-width] tr,.wp-block-table table[style*=border-width]>*{border-style:inherit;border-width:inherit}
+/*# sourceURL=https://www.pythontutorial.net/wp-includes/blocks/table/style.min.css */
+  </style>
+  <style id="classic-theme-styles-inline-css">
+   /*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+  </style>
+  <style id="global-styles-inline-css">
+   :root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+  </style>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/essential-optimize/cache/46addf847d28c34e9606b5ff49e9d622155956b0a3607eaabb68975f1db878ed.css" id="feature-pages-css" media="all" rel="stylesheet"/>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/essential-optimize/cache/516d237bc2a3c9767b94710fa89e36ed709e01a3d79402e018e8aac1fd5fa972.css" id="hfb-style-css" media="all" rel="stylesheet"/>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/essential-optimize/cache/a954557bd5b8518caa94ead755b4f79c0dc93a4ac3b0822d7ed6b833b8d33550.css" id="smart-search-css" media="all" rel="stylesheet"/>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/essential-optimize/cache/c4c3c76aad6d03db6476ab6f6e45c13a0e63dca22540faac5225c87312e7622d.css" id="ev-style-css" media="all" rel="stylesheet"/>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/essential-optimize/cache/0edbb60a47a4e09fcd067a7d2217d5ff99c23117bdf91e685bb5ae1a3c928f50.css" id="ev-svg-css" media="all" rel="stylesheet"/>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/essential-optimize/cache/5bae2023777897b7512ecdd39aa9566e3b8e4be3a1f859c06cc9b3460be26872.css" id="ev-color-css" media="all" rel="stylesheet"/>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/essential-optimize/cache/eff9a6e36cacda3a07a0149b25d897ceb43ad4f147bec7ba1364ad01d6ee06ac.css" id="ev-donation-css" media="all" rel="stylesheet"/>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/essential-optimize/cache/0a212533ac704f244c101c083c313bc110b39df887b453ddee5067152c7bc3c1.css" id="ev-print-css" media="print" rel="stylesheet"/>
+  <link href="https://www.pythontutorial.net/wp-json/" rel="https://api.w.org/"/>
+  <link href="https://www.pythontutorial.net/wp-json/wp/v2/pages/1304" rel="alternate" title="JSON" type="application/json"/>
+  <link href="https://www.pythontutorial.net/xmlrpc.php?rsd" rel="EditURI" title="RSD" type="application/rsd+xml"/>
+  <meta content="WordPress 7.1" name="generator"/>
+  <link href="https://www.pythontutorial.net/?p=1304" rel="shortlink"/>
+  <style>
+   html {			--logo-url: url("https://www.pythontutorial.net/wp-content/uploads/2021/03/python-tutorial.svg");			--logo-width: 95px;			--logo-height: 40px;			--feature-image-bg-color:#ffd141;		}			html[data-theme="dark"] {			--logo-url: url("https://www.pythontutorial.net/wp-content/uploads/2021/03/python-tutorial-dark.svg");			--logo-width: 95px;			--logo-height: 40px;		}		html[data-theme='dark'] {  color-scheme: dark;  /*  background color */  --body-bg-color: #171717;  --text-color: #e3e3e3;  --primary-color: #4db2ff;  /* header */  --header-bg-color: #171717;  --header-border-color: #454545;  /* heading color */  --heading-color: #e3e3e3;  --subheading-color: #e3e3e3;  /* Main style */  --link-color: #4db2ff;  --link-color-hover: #0091ff;  --try-it-on-accent-theme: #171717;  /* heading color */  --title-color: #e3e3e3;  /* list item color */  --list-item-color: #e3e3e3;  /* Snippet badge color*/  --badge-bg-color: #e3e3e3;  --badge-color: #323330;  /* Code badge color */  /* footer colors */  --footer-bg-color: #2e2e2e;  --footer-color: #e3e3e3;  --footer-link-color: #e3e3e3;  --footer-link-color-hover: #c7c7c7;  /* ads label color  */  --ads-label-color: #e3e3e3;  /* navbar */  --current-color: #e3e3e3;  --menu-color: #e3e3e3;  --border-color: #454545;  --hover-background-color: #242424;  --menu-background-color: #171717;  --submenu-bg-color: #2e2e2e;  --toggle-color: #242424;  /* button colors */  --button-bg-color: #282828;  --button-color: #e3e3e3;  --button-bg-color-hover: #323330;  --button-color-hover: #e3e3e3;  --button-border-color: #282828;  /* section */  --section-border-color: #454545;  /* code in the content */  --inline-code-bg-color: #454545;  --inline-code-color: #e3e3e3;  /* form */  --input-bg-color: #2e2e2e;  --input-color: #e3e3e3;  --input-border-color: #e3e3e3;  --input-border-focus-color: #4db2ff;  /* reverse image for dark mode */  --image-filter: grayscale(50%);  /* previous / next page navigation */  --page-nav-bg-color: inherit;  --mark-bg-color: #454545;  /* feature image*/  --feature-image-bg-color: #282828;  --feature-image-filter: grayscale(50%);  --fancy-list-color: #e3e3e3;  --output-bg-color: #2e2e2e;  --output-border-color: #2e2e2e;  --svg-color: #f4f4f4;  --themeable-image-filter: invert(1) sepia(0) saturate(1) hue-rotate(0deg);	  --highlight-bg: #282C34;  --highlight-img-filter:  brightness(0) invert(1);  --highlight-label: #727272;}
+  </style>
+  <style media="print">
+   .site-main:before {					content: url("https://www.pythontutorial.net/wp-content/uploads/2021/03/python-tutorial.svg");					display: block;					margin-right: auto;					margin-left: auto;					text-align: center;					max-width:200px;								}
+  </style>
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-RXTH3J6K5R">
+  </script>
+  <script>
+   window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RXTH3J6K5R');
+  </script>
+  <script async="" src="https://increaserev.com/ads/ob/tage/aaw.pythontutorial.js">
+  </script>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/2020/09/cropped-favicon-32x32.png" rel="icon" sizes="32x32"/>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/2020/09/cropped-favicon-192x192.png" rel="icon" sizes="192x192"/>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/2020/09/cropped-favicon-180x180.png" rel="apple-touch-icon"/>
+  <meta content="https://www.pythontutorial.net/wp-content/uploads/2020/09/cropped-favicon-270x270.png" name="msapplication-TileImage"/>
+  <style id="wp-custom-css">
+   .left-column {
+  border-right: none;
+}
+.sidebar {
+  border-left: none;
+}
+  </style>
+  <link href="https://www.pythontutorial.net/wp-content/uploads/essential-optimize/cache/23aa36248862097ec8d603654ac7372d98b7aec32592a655ddb05c2113d4e330.css" id="smart-syntax-highlighting-theme-css" media="all" rel="stylesheet"/>
+  <style id="smart-syntax-highlighting-theme-inline-css">
+   .wp-block-code.ssh-code-block,.ssh-highlighted{--ssh-code-bg:#f6f8fa;--ssh-code-text:#24292f;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#cf222e;--ssh-code-string:#0a3069;--ssh-code-comment:#6e7781;--ssh-code-number:#cf222e;--ssh-code-literal:#0a3069;--ssh-code-line-number:#6e7781;--ssh-code-highlight:#f6f8fa;--ssh-code-font:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4;}.ssh-highlighted [class^="hljs-"],.ssh-highlighted [class*=" hljs-"]{color:inherit;background:transparent;font-style:inherit;font-weight:inherit;text-decoration:inherit;}.ssh-highlighted{
+  
+  
+  
+  color: #333;
+  
+}.ssh-highlighted .hljs-comment,.ssh-highlighted .hljs-quote{
+  color: #998;
+  font-style: italic;
+}.ssh-highlighted .hljs-keyword,.ssh-highlighted .hljs-selector-tag,.ssh-highlighted .hljs-subst{
+  color: #333;
+  font-weight: bold;
+}.ssh-highlighted .hljs-number,.ssh-highlighted .hljs-literal,.ssh-highlighted .hljs-variable,.ssh-highlighted .hljs-template-variable,.ssh-highlighted .hljs-tag .hljs-attr{
+  color: #008080;
+}.ssh-highlighted .hljs-string,.ssh-highlighted .hljs-doctag{
+  color: #d14;
+}.ssh-highlighted .hljs-title,.ssh-highlighted .hljs-section,.ssh-highlighted .hljs-selector-id{
+  color: #900;
+  font-weight: bold;
+}.ssh-highlighted .hljs-subst{
+  font-weight: normal;
+}.ssh-highlighted .hljs-type,.ssh-highlighted .hljs-class .hljs-title{
+  color: #458;
+  font-weight: bold;
+}.ssh-highlighted .hljs-tag,.ssh-highlighted .hljs-name,.ssh-highlighted .hljs-attribute{
+  color: #000080;
+  font-weight: normal;
+}.ssh-highlighted .hljs-regexp,.ssh-highlighted .hljs-link{
+  color: #009926;
+}.ssh-highlighted .hljs-symbol,.ssh-highlighted .hljs-bullet{
+  color: #990073;
+}.ssh-highlighted .hljs-built_in,.ssh-highlighted .hljs-builtin-name{
+  color: #0086b3;
+}.ssh-highlighted .hljs-meta{
+  color: #999;
+  font-weight: bold;
+}.ssh-highlighted .hljs-deletion{
+  
+}.ssh-highlighted .hljs-addition{
+  
+}.ssh-highlighted .hljs-emphasis{
+  font-style: italic;
+}.ssh-highlighted .hljs-strong{
+  font-weight: bold;
+}
+
+
+@media (prefers-color-scheme:dark){.wp-block-code.ssh-code-block,.ssh-highlighted{--ssh-code-bg:#1c1b1b;--ssh-code-text:#fff;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#88aece;--ssh-code-string:#b5bd68;--ssh-code-comment:#999;--ssh-code-number:#88aece;--ssh-code-literal:#b5bd68;--ssh-code-line-number:#999;--ssh-code-highlight:#1c1b1b;--ssh-code-font:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4;}.ssh-highlighted [class^="hljs-"],.ssh-highlighted [class*=" hljs-"]{color:inherit;background:transparent;font-style:inherit;font-weight:inherit;text-decoration:inherit;}.ssh-highlighted{color:#fff}.ssh-highlighted .hljs-keyword,.ssh-highlighted .hljs-selector-tag{color:#88aece}.ssh-highlighted .hljs-string,.ssh-highlighted .hljs-doctag{color:#b5bd68}.ssh-highlighted .hljs-comment,.ssh-highlighted .hljs-quote{color:#999;font-style:italic}.ssh-highlighted .hljs-number,.ssh-highlighted .hljs-literal{color:#88aece}.ssh-highlighted .hljs-title,.ssh-highlighted .hljs-type,.ssh-highlighted .hljs-built_in{color:#b5bd68}}html.dark .wp-block-code.ssh-code-block,html.dark .ssh-highlighted{--ssh-code-bg:#1c1b1b;--ssh-code-text:#fff;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#88aece;--ssh-code-string:#b5bd68;--ssh-code-comment:#999;--ssh-code-number:#88aece;--ssh-code-literal:#b5bd68;--ssh-code-line-number:#999;--ssh-code-highlight:#1c1b1b;--ssh-code-font:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4;}html.dark .ssh-highlighted [class^="hljs-"],html.dark .ssh-highlighted [class*=" hljs-"]{color:inherit;background:transparent;font-style:inherit;font-weight:inherit;text-decoration:inherit;}html.dark .ssh-highlighted{color:#fff}html.dark .ssh-highlighted .hljs-keyword,html.dark .ssh-highlighted .hljs-selector-tag{color:#88aece}html.dark .ssh-highlighted .hljs-string,html.dark .ssh-highlighted .hljs-doctag{color:#b5bd68}html.dark .ssh-highlighted .hljs-comment,html.dark .ssh-highlighted .hljs-quote{color:#999;font-style:italic}html.dark .ssh-highlighted .hljs-number,html.dark .ssh-highlighted .hljs-literal{color:#88aece}html.dark .ssh-highlighted .hljs-title,html.dark .ssh-highlighted .hljs-type,html.dark .ssh-highlighted .hljs-built_in{color:#b5bd68}body.dark .wp-block-code.ssh-code-block,body.dark .ssh-highlighted{--ssh-code-bg:#1c1b1b;--ssh-code-text:#fff;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#88aece;--ssh-code-string:#b5bd68;--ssh-code-comment:#999;--ssh-code-number:#88aece;--ssh-code-literal:#b5bd68;--ssh-code-line-number:#999;--ssh-code-highlight:#1c1b1b;--ssh-code-font:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4;}body.dark .ssh-highlighted [class^="hljs-"],body.dark .ssh-highlighted [class*=" hljs-"]{color:inherit;background:transparent;font-style:inherit;font-weight:inherit;text-decoration:inherit;}body.dark .ssh-highlighted{color:#fff}body.dark .ssh-highlighted .hljs-keyword,body.dark .ssh-highlighted .hljs-selector-tag{color:#88aece}body.dark .ssh-highlighted .hljs-string,body.dark .ssh-highlighted .hljs-doctag{color:#b5bd68}body.dark .ssh-highlighted .hljs-comment,body.dark .ssh-highlighted .hljs-quote{color:#999;font-style:italic}body.dark .ssh-highlighted .hljs-number,body.dark .ssh-highlighted .hljs-literal{color:#88aece}body.dark .ssh-highlighted .hljs-title,body.dark .ssh-highlighted .hljs-type,body.dark .ssh-highlighted .hljs-built_in{color:#b5bd68}[data-theme="dark"] .wp-block-code.ssh-code-block,[data-theme="dark"] .ssh-highlighted{--ssh-code-bg:#1c1b1b;--ssh-code-text:#fff;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#88aece;--ssh-code-string:#b5bd68;--ssh-code-comment:#999;--ssh-code-number:#88aece;--ssh-code-literal:#b5bd68;--ssh-code-line-number:#999;--ssh-code-highlight:#1c1b1b;--ssh-code-font:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4;}[data-theme="dark"] .ssh-highlighted [class^="hljs-"],[data-theme="dark"] .ssh-highlighted [class*=" hljs-"]{color:inherit;background:transparent;font-style:inherit;font-weight:inherit;text-decoration:inherit;}[data-theme="dark"] .ssh-highlighted{color:#fff}[data-theme="dark"] .ssh-highlighted .hljs-keyword,[data-theme="dark"] .ssh-highlighted .hljs-selector-tag{color:#88aece}[data-theme="dark"] .ssh-highlighted .hljs-string,[data-theme="dark"] .ssh-highlighted .hljs-doctag{color:#b5bd68}[data-theme="dark"] .ssh-highlighted .hljs-comment,[data-theme="dark"] .ssh-highlighted .hljs-quote{color:#999;font-style:italic}[data-theme="dark"] .ssh-highlighted .hljs-number,[data-theme="dark"] .ssh-highlighted .hljs-literal{color:#88aece}[data-theme="dark"] .ssh-highlighted .hljs-title,[data-theme="dark"] .ssh-highlighted .hljs-type,[data-theme="dark"] .ssh-highlighted .hljs-built_in{color:#b5bd68}[data-color-scheme="dark"] .wp-block-code.ssh-code-block,[data-color-scheme="dark"] .ssh-highlighted{--ssh-code-bg:#1c1b1b;--ssh-code-text:#fff;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#88aece;--ssh-code-string:#b5bd68;--ssh-code-comment:#999;--ssh-code-number:#88aece;--ssh-code-literal:#b5bd68;--ssh-code-line-number:#999;--ssh-code-highlight:#1c1b1b;--ssh-code-font:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4;}[data-color-scheme="dark"] .ssh-highlighted [class^="hljs-"],[data-color-scheme="dark"] .ssh-highlighted [class*=" hljs-"]{color:inherit;background:transparent;font-style:inherit;font-weight:inherit;text-decoration:inherit;}[data-color-scheme="dark"] .ssh-highlighted{color:#fff}[data-color-scheme="dark"] .ssh-highlighted .hljs-keyword,[data-color-scheme="dark"] .ssh-highlighted .hljs-selector-tag{color:#88aece}[data-color-scheme="dark"] .ssh-highlighted .hljs-string,[data-color-scheme="dark"] .ssh-highlighted .hljs-doctag{color:#b5bd68}[data-color-scheme="dark"] .ssh-highlighted .hljs-comment,[data-color-scheme="dark"] .ssh-highlighted .hljs-quote{color:#999;font-style:italic}[data-color-scheme="dark"] .ssh-highlighted .hljs-number,[data-color-scheme="dark"] .ssh-highlighted .hljs-literal{color:#88aece}[data-color-scheme="dark"] .ssh-highlighted .hljs-title,[data-color-scheme="dark"] .ssh-highlighted .hljs-type,[data-color-scheme="dark"] .ssh-highlighted .hljs-built_in{color:#b5bd68}html.light .wp-block-code.ssh-code-block,html.light .ssh-highlighted{--ssh-code-bg:#f6f8fa;--ssh-code-text:#24292f;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#cf222e;--ssh-code-string:#0a3069;--ssh-code-comment:#6e7781;--ssh-code-number:#cf222e;--ssh-code-literal:#0a3069;--ssh-code-line-number:#6e7781;--ssh-code-highlight:#f6f8fa;--ssh-code-font:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4;}html.light .ssh-highlighted [class^="hljs-"],html.light .ssh-highlighted [class*=" hljs-"]{color:inherit;background:transparent;font-style:inherit;font-weight:inherit;text-decoration:inherit;}html.light .ssh-highlighted{
+  
+  
+  
+  color: #333;
+  
+}html.light .ssh-highlighted .hljs-comment,html.light .ssh-highlighted .hljs-quote{
+  color: #998;
+  font-style: italic;
+}html.light .ssh-highlighted .hljs-keyword,html.light .ssh-highlighted .hljs-selector-tag,html.light .ssh-highlighted .hljs-subst{
+  color: #333;
+  font-weight: bold;
+}html.light .ssh-highlighted .hljs-number,html.light .ssh-highlighted .hljs-literal,html.light .ssh-highlighted .hljs-variable,html.light .ssh-highlighted .hljs-template-variable,html.light .ssh-highlighted .hljs-tag .hljs-attr{
+  color: #008080;
+}html.light .ssh-highlighted .hljs-string,html.light .ssh-highlighted .hljs-doctag{
+  color: #d14;
+}html.light .ssh-highlighted .hljs-title,html.light .ssh-highlighted .hljs-section,html.light .ssh-highlighted .hljs-selector-id{
+  color: #900;
+  font-weight: bold;
+}html.light .ssh-highlighted .hljs-subst{
+  font-weight: normal;
+}html.light .ssh-highlighted .hljs-type,html.light .ssh-highlighted .hljs-class .hljs-title{
+  color: #458;
+  font-weight: bold;
+}html.light .ssh-highlighted .hljs-tag,html.light .ssh-highlighted .hljs-name,html.light .ssh-highlighted .hljs-attribute{
+  color: #000080;
+  font-weight: normal;
+}html.light .ssh-highlighted .hljs-regexp,html.light .ssh-highlighted .hljs-link{
+  color: #009926;
+}html.light .ssh-highlighted .hljs-symbol,html.light .ssh-highlighted .hljs-bullet{
+  color: #990073;
+}html.light .ssh-highlighted .hljs-built_in,html.light .ssh-highlighted .hljs-builtin-name{
+  color: #0086b3;
+}html.light .ssh-highlighted .hljs-meta{
+  color: #999;
+  font-weight: bold;
+}html.light .ssh-highlighted .hljs-deletion{
+  
+}html.light .ssh-highlighted .hljs-addition{
+  
+}html.light .ssh-highlighted .hljs-emphasis{
+  font-style: italic;
+}html.light .ssh-highlighted .hljs-strong{
+  font-weight: bold;
+}
+
+
+body.light .wp-block-code.ssh-code-block,body.light .ssh-highlighted{--ssh-code-bg:#f6f8fa;--ssh-code-text:#24292f;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#cf222e;--ssh-code-string:#0a3069;--ssh-code-comment:#6e7781;--ssh-code-number:#cf222e;--ssh-code-literal:#0a3069;--ssh-code-line-number:#6e7781;--ssh-code-highlight:#f6f8fa;--ssh-code-font:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4;}body.light .ssh-highlighted [class^="hljs-"],body.light .ssh-highlighted [class*=" hljs-"]{color:inherit;background:transparent;font-style:inherit;font-weight:inherit;text-decoration:inherit;}body.light .ssh-highlighted{
+  
+  
+  
+  color: #333;
+  
+}body.light .ssh-highlighted .hljs-comment,body.light .ssh-highlighted .hljs-quote{
+  color: #998;
+  font-style: italic;
+}body.light .ssh-highlighted .hljs-keyword,body.light .ssh-highlighted .hljs-selector-tag,body.light .ssh-highlighted .hljs-subst{
+  color: #333;
+  font-weight: bold;
+}body.light .ssh-highlighted .hljs-number,body.light .ssh-highlighted .hljs-literal,body.light .ssh-highlighted .hljs-variable,body.light .ssh-highlighted .hljs-template-variable,body.light .ssh-highlighted .hljs-tag .hljs-attr{
+  color: #008080;
+}body.light .ssh-highlighted .hljs-string,body.light .ssh-highlighted .hljs-doctag{
+  color: #d14;
+}body.light .ssh-highlighted .hljs-title,body.light .ssh-highlighted .hljs-section,body.light .ssh-highlighted .hljs-selector-id{
+  color: #900;
+  font-weight: bold;
+}body.light .ssh-highlighted .hljs-subst{
+  font-weight: normal;
+}body.light .ssh-highlighted .hljs-type,body.light .ssh-highlighted .hljs-class .hljs-title{
+  color: #458;
+  font-weight: bold;
+}body.light .ssh-highlighted .hljs-tag,body.light .ssh-highlighted .hljs-name,body.light .ssh-highlighted .hljs-attribute{
+  color: #000080;
+  font-weight: normal;
+}body.light .ssh-highlighted .hljs-regexp,body.light .ssh-highlighted .hljs-link{
+  color: #009926;
+}body.light .ssh-highlighted .hljs-symbol,body.light .ssh-highlighted .hljs-bullet{
+  color: #990073;
+}body.light .ssh-highlighted .hljs-built_in,body.light .ssh-highlighted .hljs-builtin-name{
+  color: #0086b3;
+}body.light .ssh-highlighted .hljs-meta{
+  color: #999;
+  font-weight: bold;
+}body.light .ssh-highlighted .hljs-deletion{
+  
+}body.light .ssh-highlighted .hljs-addition{
+  
+}body.light .ssh-highlighted .hljs-emphasis{
+  font-style: italic;
+}body.light .ssh-highlighted .hljs-strong{
+  font-weight: bold;
+}
+
+
+[data-theme="light"] .wp-block-code.ssh-code-block,[data-theme="light"] .ssh-highlighted{--ssh-code-bg:#f6f8fa;--ssh-code-text:#24292f;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#cf222e;--ssh-code-string:#0a3069;--ssh-code-comment:#6e7781;--ssh-code-number:#cf222e;--ssh-code-literal:#0a3069;--ssh-code-line-number:#6e7781;--ssh-code-highlight:#f6f8fa;--ssh-code-font:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4;}[data-theme="light"] .ssh-highlighted [class^="hljs-"],[data-theme="light"] .ssh-highlighted [class*=" hljs-"]{color:inherit;background:transparent;font-style:inherit;font-weight:inherit;text-decoration:inherit;}[data-theme="light"] .ssh-highlighted{
+  
+  
+  
+  color: #333;
+  
+}[data-theme="light"] .ssh-highlighted .hljs-comment,[data-theme="light"] .ssh-highlighted .hljs-quote{
+  color: #998;
+  font-style: italic;
+}[data-theme="light"] .ssh-highlighted .hljs-keyword,[data-theme="light"] .ssh-highlighted .hljs-selector-tag,[data-theme="light"] .ssh-highlighted .hljs-subst{
+  color: #333;
+  font-weight: bold;
+}[data-theme="light"] .ssh-highlighted .hljs-number,[data-theme="light"] .ssh-highlighted .hljs-literal,[data-theme="light"] .ssh-highlighted .hljs-variable,[data-theme="light"] .ssh-highlighted .hljs-template-variable,[data-theme="light"] .ssh-highlighted .hljs-tag .hljs-attr{
+  color: #008080;
+}[data-theme="light"] .ssh-highlighted .hljs-string,[data-theme="light"] .ssh-highlighted .hljs-doctag{
+  color: #d14;
+}[data-theme="light"] .ssh-highlighted .hljs-title,[data-theme="light"] .ssh-highlighted .hljs-section,[data-theme="light"] .ssh-highlighted .hljs-selector-id{
+  color: #900;
+  font-weight: bold;
+}[data-theme="light"] .ssh-highlighted .hljs-subst{
+  font-weight: normal;
+}[data-theme="light"] .ssh-highlighted .hljs-type,[data-theme="light"] .ssh-highlighted .hljs-class .hljs-title{
+  color: #458;
+  font-weight: bold;
+}[data-theme="light"] .ssh-highlighted .hljs-tag,[data-theme="light"] .ssh-highlighted .hljs-name,[data-theme="light"] .ssh-highlighted .hljs-attribute{
+  color: #000080;
+  font-weight: normal;
+}[data-theme="light"] .ssh-highlighted .hljs-regexp,[data-theme="light"] .ssh-highlighted .hljs-link{
+  color: #009926;
+}[data-theme="light"] .ssh-highlighted .hljs-symbol,[data-theme="light"] .ssh-highlighted .hljs-bullet{
+  color: #990073;
+}[data-theme="light"] .ssh-highlighted .hljs-built_in,[data-theme="light"] .ssh-highlighted .hljs-builtin-name{
+  color: #0086b3;
+}[data-theme="light"] .ssh-highlighted .hljs-meta{
+  color: #999;
+  font-weight: bold;
+}[data-theme="light"] .ssh-highlighted .hljs-deletion{
+  
+}[data-theme="light"] .ssh-highlighted .hljs-addition{
+  
+}[data-theme="light"] .ssh-highlighted .hljs-emphasis{
+  font-style: italic;
+}[data-theme="light"] .ssh-highlighted .hljs-strong{
+  font-weight: bold;
+}
+
+
+[data-color-scheme="light"] .wp-block-code.ssh-code-block,[data-color-scheme="light"] .ssh-highlighted{--ssh-code-bg:#f6f8fa;--ssh-code-text:#24292f;--ssh-code-border:transparent;--ssh-code-border-width:0px;--ssh-code-border-style:solid;--ssh-code-keyword:#cf222e;--ssh-code-string:#0a3069;--ssh-code-comment:#6e7781;--ssh-code-number:#cf222e;--ssh-code-literal:#0a3069;--ssh-code-line-number:#6e7781;--ssh-code-highlight:#f6f8fa;--ssh-code-font:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--ssh-code-font-size:0.875rem;--ssh-code-line-height:1.6;--ssh-code-padding:1rem;--ssh-code-radius:8px;--ssh-code-tab-size:4;}[data-color-scheme="light"] .ssh-highlighted [class^="hljs-"],[data-color-scheme="light"] .ssh-highlighted [class*=" hljs-"]{color:inherit;background:transparent;font-style:inherit;font-weight:inherit;text-decoration:inherit;}[data-color-scheme="light"] .ssh-highlighted{
+  
+  
+  
+  color: #333;
+  
+}[data-color-scheme="light"] .ssh-highlighted .hljs-comment,[data-color-scheme="light"] .ssh-highlighted .hljs-quote{
+  color: #998;
+  font-style: italic;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-keyword,[data-color-scheme="light"] .ssh-highlighted .hljs-selector-tag,[data-color-scheme="light"] .ssh-highlighted .hljs-subst{
+  color: #333;
+  font-weight: bold;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-number,[data-color-scheme="light"] .ssh-highlighted .hljs-literal,[data-color-scheme="light"] .ssh-highlighted .hljs-variable,[data-color-scheme="light"] .ssh-highlighted .hljs-template-variable,[data-color-scheme="light"] .ssh-highlighted .hljs-tag .hljs-attr{
+  color: #008080;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-string,[data-color-scheme="light"] .ssh-highlighted .hljs-doctag{
+  color: #d14;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-title,[data-color-scheme="light"] .ssh-highlighted .hljs-section,[data-color-scheme="light"] .ssh-highlighted .hljs-selector-id{
+  color: #900;
+  font-weight: bold;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-subst{
+  font-weight: normal;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-type,[data-color-scheme="light"] .ssh-highlighted .hljs-class .hljs-title{
+  color: #458;
+  font-weight: bold;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-tag,[data-color-scheme="light"] .ssh-highlighted .hljs-name,[data-color-scheme="light"] .ssh-highlighted .hljs-attribute{
+  color: #000080;
+  font-weight: normal;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-regexp,[data-color-scheme="light"] .ssh-highlighted .hljs-link{
+  color: #009926;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-symbol,[data-color-scheme="light"] .ssh-highlighted .hljs-bullet{
+  color: #990073;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-built_in,[data-color-scheme="light"] .ssh-highlighted .hljs-builtin-name{
+  color: #0086b3;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-meta{
+  color: #999;
+  font-weight: bold;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-deletion{
+  
+}[data-color-scheme="light"] .ssh-highlighted .hljs-addition{
+  
+}[data-color-scheme="light"] .ssh-highlighted .hljs-emphasis{
+  font-style: italic;
+}[data-color-scheme="light"] .ssh-highlighted .hljs-strong{
+  font-weight: bold;
+}
+
+
+
+/*# sourceURL=smart-syntax-highlighting-theme-inline-css */
+  </style>
+ </head>
+ <body class="wp-singular page-template-default page page-id-1304 page-child parent-pageid-1232 wp-theme-evolution">
+  <div class="site" id="page">
+   <a class="skip-link screen-reader-text" href="#primary">
+    Skip to content
+   </a>
+   <header class="site-header" id="masthead">
+    <div class="wrap header-wrapper">
+     <div class="site-branding">
+      <a aria-current="page" aria-label="Go to the homepage" class="logo" href="https://www.pythontutorial.net" rel="home">
+      </a>
+     </div>
+     <nav class="site-navigation" id="site-navigation">
+      <ul class="site-menu" id="primary-menu">
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-36" id="menu-item-36">
+        <a href="https://www.pythontutorial.net/">
+         Home
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42" id="menu-item-42">
+        <a href="https://www.pythontutorial.net/python-basics/">
+         Basics
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-464" id="menu-item-464">
+        <a href="https://www.pythontutorial.net/python-oop/">
+         OOP
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4111" id="menu-item-4111">
+        <a href="https://www.pythontutorial.net/python-concurrency/">
+         Concurrency
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6527" id="menu-item-6527">
+        <a href="#" role="button">
+         Advanced
+        </a>
+        <ul class="sub-menu">
+         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-846" id="menu-item-846">
+          <a href="https://www.pythontutorial.net/advanced-python/">
+           Advanced
+          </a>
+         </li>
+         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6528" id="menu-item-6528">
+          <a href="https://www.pythontutorial.net/python-regex/">
+           Regex
+          </a>
+         </li>
+         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6529" id="menu-item-6529">
+          <a href="https://www.pythontutorial.net/python-unit-testing/">
+           Unit Testing
+          </a>
+         </li>
+         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6530" id="menu-item-6530">
+          <a href="https://www.pythontutorial.net/python-numpy/">
+           NumPy
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6526" id="menu-item-6526">
+        <a href="#" role="button">
+         GUI
+        </a>
+        <ul class="sub-menu">
+         <li class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor menu-item-1320" id="menu-item-1320">
+          <a href="https://www.pythontutorial.net/tkinter/">
+           Tkinter
+          </a>
+         </li>
+         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5172" id="menu-item-5172">
+          <a href="https://www.pythontutorial.net/pyqt/">
+           PyQt
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6148" id="menu-item-6148">
+        <a href="https://www.pythontutorial.net/django-tutorial/">
+         Django
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6932" id="menu-item-6932">
+        <a href="https://www.pythontutorial.net/playground/">
+         Playground
+        </a>
+       </li>
+      </ul>
+      <a class="switch-theme" href="#" title="Toggle dark mode">
+       <svg class="dark-mode-icon" fill="currentColor" height="16" viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z">
+        </path>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+        </path>
+       </svg>
+       <svg class="light-mode-icon" fill="currentColor" height="16" viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+        </path>
+       </svg>
+      </a>
+      <button aria-controls="primary-menu" aria-expanded="false" aria-label="Primary Menu" class="menu-toggle">
+      </button>
+     </nav>
+    </div>
+   </header>
+   <div class="left-column">
+    <div class="sticky">
+     <div data-aa-adunit="/21722279357/120x600_ob_pythontutorial_desk" data-aaad="true">
+     </div>
+    </div>
+   </div>
+   <main class="site-main" id="primary">
+    <p class="breadcrumbs">
+     <span>
+      <span>
+       <a href="https://www.pythontutorial.net/">
+        Home
+       </a>
+      </span>
+      Â»
+      <span>
+       <a href="https://www.pythontutorial.net/tkinter/">
+        Tkinter Tutorial
+       </a>
+      </span>
+      Â»
+      <span aria-current="page" class="breadcrumb_last">
+       Tkinter Grid
+      </span>
+     </span>
+    </p>
+    <article class="post-1304 page type-page status-publish hentry" id="post-1304">
+     <header class="entry-header">
+      <h1 class="entry-title">
+       Tkinter Grid
+      </h1>
+     </header>
+     <div class="entry-content">
+      <div class="whitelist">
+       <div class="ads ad-336">
+        <div data-aa-adunit="/21722279357/336x280_ob_pythontutorial_3_m" data-aaad="true">
+        </div>
+       </div>
+      </div>
+      <p class="wp-block-paragraph">
+       <strong>
+        Summary
+       </strong>
+       : in this tutorial, you’ll learn how to use the Tkinter grid geometry manager to position widgets on a window.
+      </p>
+      <h2 class="wp-block-heading" id="introduction-to-the-tkinter-grid-geometry-manager">
+       Introduction to the Tkinter grid geometry manager
+       <a class="anchor" href="#introduction-to-the-tkinter-grid-geometry-manager" id="introduction-to-the-tkinter-grid-geometry-manager" title="Anchor for Introduction to the Tkinter grid geometry manager">
+        #
+       </a>
+      </h2>
+      <p class="wp-block-paragraph">
+       The grid geometry manager uses the concepts of rows and columns to arrange the
+       <a href="https://www.pythontutorial.net/tkinter/tkinter-ttk/">
+        widgets
+       </a>
+       on a
+       <a href="https://www.pythontutorial.net/tkinter/tkinter-window/">
+        window
+       </a>
+       or
+       <a href="https://www.pythontutorial.net/tkinter/tkinter-frame/">
+        frame
+       </a>
+       .
+      </p>
+      <p class="wp-block-paragraph">
+       The following picture shows a grid that consists of four rows and three columns:
+      </p>
+      <div class="wp-block-image">
+       <figure class="aligncenter size-large">
+        <img alt="" class="wp-image-2174" decoding="async" fetchpriority="high" height="349" sizes="(max-width: 453px) 100vw, 453px" src="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Grid-Geometry.png" srcset="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Grid-Geometry.png 453w, https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Grid-Geometry-300x231.png 300w" width="453"/>
+       </figure>
+      </div>
+      <p class="wp-block-paragraph">
+       Each row and column in the grid is identified by an index. By default, the first row has an index of zero, the second row has an index of one, and so on. Likewise, the columns in the grid have indexes of zero, one, two, etc.
+      </p>
+      <p class="wp-block-paragraph">
+       The indexes of rows and columns in a grid don’t have to start at zero. Additionally, indexes of the row and column can have gaps. For example, you can have a grid whose column indexes are 1, 2, 10, 11, and 12. The gaps can be useful when you plan to add more widgets in the middle of the grid later.
+      </p>
+      <p class="wp-block-paragraph">
+       The intersection of a row and a column is called a
+       <strong>
+        cell
+       </strong>
+       . A cell is an area where you can place a widget. A cell can show only one widget at a time. If you place two or more widgets in a cell, they’ll be on top of each other.
+      </p>
+      <p class="wp-block-paragraph">
+       To place multiple widgets in a cell, you use a container like a
+       <code>
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-frame/">
+         Frame
+        </a>
+       </code>
+       or
+       <code>
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-labelframe/">
+         LabelFrame
+        </a>
+       </code>
+       to wrap the widgets and place container on the cell.
+      </p>
+      <p class="wp-block-paragraph">
+       The column’s width depends on the width of the widget it contains. Similarly, the row’s height depends on the height of the widgets contained within the row.
+      </p>
+      <p class="wp-block-paragraph">
+       Rows and columns can span. The following picture shows a grid with the cell (1,1) that spans two columns and the cell (0,2) that spans two rows:
+      </p>
+      <div class="wp-block-image">
+       <figure class="aligncenter size-large">
+        <img alt="" class="wp-image-2176" decoding="async" height="350" sizes="(max-width: 459px) 100vw, 459px" src="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-columnspan-rowspan.png" srcset="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-columnspan-rowspan.png 459w, https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-columnspan-rowspan-300x229.png 300w" width="459"/>
+       </figure>
+      </div>
+      <h2 class="wp-block-heading" id="setting-up-the-grid">
+       Setting up the grid
+       <a class="anchor" href="#setting-up-the-grid" id="setting-up-the-grid" title="Anchor for Setting up the grid">
+        #
+       </a>
+      </h2>
+      <p class="wp-block-paragraph">
+       Before positioning widgets on a grid, you’ll need to configure the rows and columns of the grid. Tkinter provides you with two methods for configuring grid rows and columns:
+      </p>
+      <pre class="wp-block-code ssh-code-block" data-ssh-language="abap" data-ssh-source="Y29udGFpbmVyLmNvbHVtbmNvbmZpZ3VyZShpbmRleCwgd2VpZ2h0KQpjb250YWluZXIucm93Y29uZmlndXJlKGluZGV4LCB3ZWlnaHQp"><code class="ssh-highlighted hljs language-abap">container.columnconfigure(<span class="hljs-built_in">index</span>, weight)
+container.rowconfigure(<span class="hljs-built_in">index</span>, weight)</code><button aria-label="Copy code" class="ssh-copy-button" title="Copy code" type="button"><span aria-hidden="true" class="ssh-copy-icon"></span><span class="ssh-copy-label">Copy</span></button></pre>
+      <p class="wp-block-paragraph">
+       The
+       <code>
+        columnconfigure()
+       </code>
+       method configures the column
+       <code>
+        index
+       </code>
+       of a grid. The
+       <code>
+        weight
+       </code>
+       determines how wide the column will occupy, which is relative to other columns.
+      </p>
+      <p class="wp-block-paragraph">
+       For example, a column with a weight of 2 will be twice as wide as a column with a weight of 1.
+      </p>
+      <h2 class="wp-block-heading" id="positioning-a-widget-on-the-grid">
+       Positioning a widget on the grid
+       <a class="anchor" href="#positioning-a-widget-on-the-grid" id="positioning-a-widget-on-the-grid" title="Anchor for Positioning a widget on the grid">
+        #
+       </a>
+      </h2>
+      <p class="wp-block-paragraph">
+       To place a widget on the grid, you use the widget’s
+       <code>
+        grid()
+       </code>
+       method:
+      </p>
+      <pre class="wp-block-code ssh-code-block" data-ssh-language="python" data-ssh-source="d2lkZ2V0LmdyaWQoKipvcHRpb25zKQ=="><code class="ssh-highlighted hljs language-python">widget.grid(**options)</code><button aria-label="Copy code" class="ssh-copy-button" title="Copy code" type="button"><span aria-hidden="true" class="ssh-copy-icon"></span><span class="ssh-copy-label">Copy</span></button></pre>
+      <p class="wp-block-paragraph">
+       The
+       <code>
+        grid()
+       </code>
+       method has the following parameters:
+      </p>
+      <figure class="wp-block-table">
+       <table>
+        <thead>
+         <tr>
+          <th>
+           Parameters
+          </th>
+          <th>
+           Meaning
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           column
+          </td>
+          <td>
+           The column index where you want to place the widget.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           row
+          </td>
+          <td>
+           The row index where you want to place the widget.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           rowspan
+          </td>
+          <td>
+           Set the number of adjacent rows that the widget can span.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           columnspan
+          </td>
+          <td>
+           Set the number of adjacent columns that the widget can span.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           sticky
+          </td>
+          <td>
+           If the cell is large than the widget, the
+           <code>
+            sticky
+           </code>
+           option specifies which side the widget should stick to and how to distribute any extra space within the cell that is not taken up by the widget at its original size.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           padx
+          </td>
+          <td>
+           Add external padding above and below the widget.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           pady
+          </td>
+          <td>
+           Add external padding to the left and right of the widget.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           ipadx
+          </td>
+          <td>
+           Add internal padding inside the widget from the left and right sides.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           ipady
+          </td>
+          <td>
+           Add internal padding inside the widget from the top and bottom sides.
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </figure>
+      <h3 class="wp-block-heading" id="sticky">
+       Sticky
+       <a class="anchor" href="#sticky" id="sticky" title="Anchor for Sticky">
+        #
+       </a>
+      </h3>
+      <p class="wp-block-paragraph">
+       By default, when a cell is larger than the widget it contains, the grid geometry manager places the widget at the center of the cell horizontally and vertically.
+      </p>
+      <div class="wp-block-image">
+       <figure class="aligncenter size-large">
+        <img alt="" class="wp-image-2179" decoding="async" height="259" sizes="(max-width: 367px) 100vw, 367px" src="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-Options.png" srcset="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-Options.png 367w, https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-Options-300x212.png 300w" width="367"/>
+       </figure>
+      </div>
+      <p class="wp-block-paragraph">
+       To change this default behavior, you can use the
+       <code>
+        sticky
+       </code>
+       option. The
+       <code>
+        sticky
+       </code>
+       option specifies which edge of the cell the widget should stick to.
+      </p>
+      <p class="wp-block-paragraph">
+       The
+       <code>
+        sticky
+       </code>
+       has the following valid values:
+      </p>
+      <figure class="wp-block-table">
+       <table>
+        <thead>
+         <tr>
+          <th>
+           Sticky
+          </th>
+          <th>
+           Description
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           N
+          </td>
+          <td>
+           North or Top Center
+          </td>
+         </tr>
+         <tr>
+          <td>
+           S
+          </td>
+          <td>
+           South or Bottom Center
+          </td>
+         </tr>
+         <tr>
+          <td>
+           E
+          </td>
+          <td>
+           East or Right Center
+          </td>
+         </tr>
+         <tr>
+          <td>
+           W
+          </td>
+          <td>
+           West or Left Center
+          </td>
+         </tr>
+         <tr>
+          <td>
+           NW
+          </td>
+          <td>
+           North West or Top Left
+          </td>
+         </tr>
+         <tr>
+          <td>
+           NE
+          </td>
+          <td>
+           North East or Top Right
+          </td>
+         </tr>
+         <tr>
+          <td>
+           SE
+          </td>
+          <td>
+           South East or Bottom Right
+          </td>
+         </tr>
+         <tr>
+          <td>
+           SW
+          </td>
+          <td>
+           South West or Bottom Left
+          </td>
+         </tr>
+         <tr>
+          <td>
+           NS
+          </td>
+          <td>
+           NS stretches the widget vertically. However, it leaves the widget centered horizontally.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           EW
+          </td>
+          <td>
+           EW stretches the widget horizontally. However, it leaves the widget centered vertically.
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </figure>
+      <p class="wp-block-paragraph">
+       If you want to position the widget in the corner of the cell, you can use the N, S, E, and W.
+      </p>
+      <p class="wp-block-paragraph">
+       The following picture illustrates how to position a widget with the sticky option set to
+       <code>
+        N
+       </code>
+       :
+      </p>
+      <div class="wp-block-image">
+       <figure class="aligncenter size-large">
+        <img alt="" class="wp-image-2198" decoding="async" height="259" loading="lazy" sizes="auto, (max-width: 367px) 100vw, 367px" src="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-N.png" srcset="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-N.png 367w, https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-N-300x212.png 300w" width="367"/>
+       </figure>
+      </div>
+      <p class="wp-block-paragraph">
+       If you want to position the widget centered against one side of the cell, you can use the NW (top left), NE (top right), SE (bottom right), and SW (bottom left).
+      </p>
+      <p class="wp-block-paragraph">
+       The following example shows how to position a widget with the sticky option set to
+       <code>
+        NW
+       </code>
+       :
+      </p>
+      <div class="wp-block-image">
+       <figure class="aligncenter size-full">
+        <img alt="Tkinter grid - Sticky NW" class="wp-image-2197" decoding="async" height="259" loading="lazy" sizes="auto, (max-width: 366px) 100vw, 366px" src="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-NW.png" srcset="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-NW.png 366w, https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-NW-300x212.png 300w" width="366"/>
+       </figure>
+      </div>
+      <p class="wp-block-paragraph">
+       NS stretches the widget vertically. However, it leaves the widget centered horizontally:
+      </p>
+      <div class="wp-block-image">
+       <figure class="aligncenter size-large">
+        <img alt="" class="wp-image-2190" decoding="async" height="259" loading="lazy" sizes="auto, (max-width: 366px) 100vw, 366px" src="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-NS-1.png" srcset="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-NS-1.png 366w, https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-NS-1-300x212.png 300w" width="366"/>
+       </figure>
+      </div>
+      <p class="wp-block-paragraph">
+       EW stretches the widget horizontally. However, it leaves the widget centered vertically:
+      </p>
+      <div class="wp-block-image">
+       <figure class="aligncenter size-large">
+        <img alt="" class="wp-image-2191" decoding="async" height="259" loading="lazy" sizes="auto, (max-width: 366px) 100vw, 366px" src="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-EW.png" srcset="https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-EW.png 366w, https://www.pythontutorial.net/wp-content/uploads/2021/01/Tkinter-grid-Sticky-EW-300x212.png 300w" width="366"/>
+       </figure>
+      </div>
+      <h3 class="wp-block-heading" id="padding">
+       Padding
+       <a class="anchor" href="#padding" id="padding" title="Anchor for Padding">
+        #
+       </a>
+      </h3>
+      <p class="wp-block-paragraph">
+       To add paddings between cells of a grid, you use the
+       <code>
+        padx
+       </code>
+       and
+       <code>
+        pady
+       </code>
+       options. The
+       <code>
+        padx
+       </code>
+       and
+       <code>
+        pady
+       </code>
+       are external paddings:
+      </p>
+      <pre class="wp-block-code ssh-code-block" data-ssh-language="python" data-ssh-source="Z3JpZChjb2x1bW4sIHJvdywgc3RpY2t5LCBwYWR4LCBwYWR5KQ=="><code class="ssh-highlighted hljs language-python">grid(column, row, sticky, padx, pady)</code><button aria-label="Copy code" class="ssh-copy-button" title="Copy code" type="button"><span aria-hidden="true" class="ssh-copy-icon"></span><span class="ssh-copy-label">Copy</span></button></pre>
+      <p class="wp-block-paragraph">
+       To add paddings within a widget itself, you use
+       <code>
+        ipadx
+       </code>
+       and
+       <code>
+        ipady
+       </code>
+       options. The
+       <code>
+        ipadx
+       </code>
+       and
+       <code>
+        ipady
+       </code>
+       are internal paddings:
+      </p>
+      <pre class="wp-block-code ssh-code-block" data-ssh-language="python" data-ssh-source="Z3JpZChjb2x1bW4sIHJvdywgc3RpY2t5LCBwYWR4LCBwYWR5LCBpcGFkeCwgaXBhZHkp"><code class="ssh-highlighted hljs language-python">grid(column, row, sticky, padx, pady, ipadx, ipady)</code><button aria-label="Copy code" class="ssh-copy-button" title="Copy code" type="button"><span aria-hidden="true" class="ssh-copy-icon"></span><span class="ssh-copy-label">Copy</span></button></pre>
+      <p class="wp-block-paragraph">
+       The internal and external paddings default to zero.
+      </p>
+      <h2 class="wp-block-heading" id="tkinter-grid-geometry-manager-example">
+       Tkinter grid geometry manager example
+       <a class="anchor" href="#tkinter-grid-geometry-manager-example" id="tkinter-grid-geometry-manager-example" title="Anchor for Tkinter grid geometry manager example">
+        #
+       </a>
+      </h2>
+      <p class="wp-block-paragraph">
+       In this example, we’ll use the grid geometry manager to design a login screen as follows:
+      </p>
+      <div class="wp-block-image">
+       <figure class="aligncenter size-large">
+        <img alt="" class="wp-image-1305" decoding="async" height="132" loading="lazy" src="https://www.pythontutorial.net/wp-content/uploads/2020/11/Tkinter-Grid-Example.png" width="242"/>
+       </figure>
+      </div>
+      <p class="wp-block-paragraph">
+       The login screen uses a grid that has two columns and three rows. Also, the second column is three times as wide as the first column:
+      </p>
+      <div class="wp-block-image">
+       <figure class="aligncenter size-large">
+        <img alt="" class="wp-image-1307" decoding="async" height="183" loading="lazy" sizes="auto, (max-width: 325px) 100vw, 325px" src="https://www.pythontutorial.net/wp-content/uploads/2020/11/Tkinter-Grid-row-and-column-configruation.png" srcset="https://www.pythontutorial.net/wp-content/uploads/2020/11/Tkinter-Grid-row-and-column-configruation.png 325w, https://www.pythontutorial.net/wp-content/uploads/2020/11/Tkinter-Grid-row-and-column-configruation-300x169.png 300w" width="325"/>
+       </figure>
+      </div>
+      <p class="wp-block-paragraph">
+       The following shows the complete login window:
+      </p>
+      <pre class="wp-block-code ssh-code-block" data-ssh-language="python" data-ssh-source="aW1wb3J0IHRraW50ZXIgYXMgdGsKZnJvbSB0a2ludGVyIGltcG9ydCB0dGsKCiMgbWFpbiB3aW5kb3cKcm9vdCA9IHRrLlRrKCkKcm9vdC5nZW9tZXRyeSgiMjQweDEwMCIpCnJvb3QudGl0bGUoJ0xvZ2luJykKCgojIGdyaWQgM3gyCnJvb3Qucm93Y29uZmlndXJlKDAsIHdlaWdodD0xKQpyb290LnJvd2NvbmZpZ3VyZSgxLCB3ZWlnaHQ9MSkKcm9vdC5yb3djb25maWd1cmUoMiwgd2VpZ2h0PTEpCnJvb3QuY29sdW1uY29uZmlndXJlKDAsIHdlaWdodD0xKQpyb290LmNvbHVtbmNvbmZpZ3VyZSgxLCB3ZWlnaHQ9MykKCgojIHVzZXJuYW1lCnVzZXJuYW1lX2xhYmVsID0gdHRrLkxhYmVsKHJvb3QsIHRleHQ9IlVzZXJuYW1lOiIpCnVzZXJuYW1lX2xhYmVsLmdyaWQoY29sdW1uPTAsIHJvdz0wLCBzdGlja3k9dGsuRVcsIHBhZHg9NSwgcGFkeT01KQoKdXNlcm5hbWVfZW50cnkgPSB0dGsuRW50cnkocm9vdCkKdXNlcm5hbWVfZW50cnkuZ3JpZChjb2x1bW49MSwgcm93PTAsIHN0aWNreT10ay5FVywgcGFkeD01LCBwYWR5PTUpCgojIHBhc3N3b3JkCnBhc3N3b3JkX2xhYmVsID0gdHRrLkxhYmVsKHJvb3QsIHRleHQ9IlBhc3N3b3JkOiIpCnBhc3N3b3JkX2xhYmVsLmdyaWQoY29sdW1uPTAsIHJvdz0xLCBzdGlja3k9dGsuRVcsIHBhZHg9NSwgcGFkeT01KQoKcGFzc3dvcmRfZW50cnkgPSB0dGsuRW50cnkocm9vdCwgIHNob3c9IioiKQpwYXNzd29yZF9lbnRyeS5ncmlkKGNvbHVtbj0xLCByb3c9MSwgc3RpY2t5PXRrLkVXLCBwYWR4PTUsIHBhZHk9NSkKCiMgbG9naW4gYnV0dG9uCmxvZ2luX2J1dHRvbiA9IHR0ay5CdXR0b24ocm9vdCwgdGV4dD0iTG9naW4iKQpsb2dpbl9idXR0b24uZ3JpZChjb2x1bW49MSwgcm93PTMsIHN0aWNreT10ay5FLCBwYWR4PTUsIHBhZHk9NSkKCgpyb290Lm1haW5sb29wKCkK"><code class="ssh-highlighted hljs language-python"><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
+<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> ttk
+
+<span class="hljs-comment"># main window</span>
+root = tk.Tk()
+root.geometry(<span class="hljs-string">"240x100"</span>)
+root.title(<span class="hljs-string">'Login'</span>)
+
+
+<span class="hljs-comment"># grid 3x2</span>
+root.rowconfigure(<span class="hljs-number">0</span>, weight=<span class="hljs-number">1</span>)
+root.rowconfigure(<span class="hljs-number">1</span>, weight=<span class="hljs-number">1</span>)
+root.rowconfigure(<span class="hljs-number">2</span>, weight=<span class="hljs-number">1</span>)
+root.columnconfigure(<span class="hljs-number">0</span>, weight=<span class="hljs-number">1</span>)
+root.columnconfigure(<span class="hljs-number">1</span>, weight=<span class="hljs-number">3</span>)
+
+
+<span class="hljs-comment"># username</span>
+username_label = ttk.Label(root, text=<span class="hljs-string">"Username:"</span>)
+username_label.grid(column=<span class="hljs-number">0</span>, row=<span class="hljs-number">0</span>, sticky=tk.EW, padx=<span class="hljs-number">5</span>, pady=<span class="hljs-number">5</span>)
+
+username_entry = ttk.Entry(root)
+username_entry.grid(column=<span class="hljs-number">1</span>, row=<span class="hljs-number">0</span>, sticky=tk.EW, padx=<span class="hljs-number">5</span>, pady=<span class="hljs-number">5</span>)
+
+<span class="hljs-comment"># password</span>
+password_label = ttk.Label(root, text=<span class="hljs-string">"Password:"</span>)
+password_label.grid(column=<span class="hljs-number">0</span>, row=<span class="hljs-number">1</span>, sticky=tk.EW, padx=<span class="hljs-number">5</span>, pady=<span class="hljs-number">5</span>)
+
+password_entry = ttk.Entry(root,  show=<span class="hljs-string">"*"</span>)
+password_entry.grid(column=<span class="hljs-number">1</span>, row=<span class="hljs-number">1</span>, sticky=tk.EW, padx=<span class="hljs-number">5</span>, pady=<span class="hljs-number">5</span>)
+
+<span class="hljs-comment"># login button</span>
+login_button = ttk.Button(root, text=<span class="hljs-string">"Login"</span>)
+login_button.grid(column=<span class="hljs-number">1</span>, row=<span class="hljs-number">3</span>, sticky=tk.E, padx=<span class="hljs-number">5</span>, pady=<span class="hljs-number">5</span>)
+
+
+root.mainloop()
+</code><button aria-label="Copy code" class="ssh-copy-button" title="Copy code" type="button"><span aria-hidden="true" class="ssh-copy-icon"></span><span class="ssh-copy-label">Copy</span></button></pre>
+      <p class="wp-block-paragraph">
+       How it works.
+      </p>
+      <p class="wp-block-paragraph">
+       First, use the
+       <code>
+        rowconfigure()
+       </code>
+       and
+       <code>
+        columnconfigure()
+       </code>
+       methods to set up a grid of 3 rows 2 columns:
+      </p>
+      <pre class="wp-block-code ssh-code-block" data-ssh-language="python" data-ssh-source="cm9vdC5yb3djb25maWd1cmUoMCwgd2VpZ2h0PTEpCnJvb3Qucm93Y29uZmlndXJlKDEsIHdlaWdodD0xKQpyb290LnJvd2NvbmZpZ3VyZSgyLCB3ZWlnaHQ9MSkKcm9vdC5jb2x1bW5jb25maWd1cmUoMCwgd2VpZ2h0PTEpCnJvb3QuY29sdW1uY29uZmlndXJlKDEsIHdlaWdodD0zKQ=="><code class="ssh-highlighted hljs language-python">root.rowconfigure(<span class="hljs-number">0</span>, weight=<span class="hljs-number">1</span>)
+root.rowconfigure(<span class="hljs-number">1</span>, weight=<span class="hljs-number">1</span>)
+root.rowconfigure(<span class="hljs-number">2</span>, weight=<span class="hljs-number">1</span>)
+root.columnconfigure(<span class="hljs-number">0</span>, weight=<span class="hljs-number">1</span>)
+root.columnconfigure(<span class="hljs-number">1</span>, weight=<span class="hljs-number">3</span>)</code><button aria-label="Copy code" class="ssh-copy-button" title="Copy code" type="button"><span aria-hidden="true" class="ssh-copy-icon"></span><span class="ssh-copy-label">Copy</span></button></pre>
+      <p class="wp-block-paragraph">
+       Second, position the username label on the first column and the username entry on the second column of the first row of the grid:
+      </p>
+      <pre class="wp-block-code ssh-code-block" data-ssh-language="python" data-ssh-source="dXNlcm5hbWVfbGFiZWwgPSB0dGsuTGFiZWwocm9vdCwgdGV4dD0iVXNlcm5hbWU6IikKdXNlcm5hbWVfbGFiZWwuZ3JpZChjb2x1bW49MCwgcm93PTAsIHN0aWNreT10ay5FVywgcGFkeD01LCBwYWR5PTUpCgp1c2VybmFtZV9lbnRyeSA9IHR0ay5FbnRyeShyb290KQp1c2VybmFtZV9lbnRyeS5ncmlkKGNvbHVtbj0xLCByb3c9MCwgc3RpY2t5PXRrLkVXLCBwYWR4PTUsIHBhZHk9NSk="><code class="ssh-highlighted hljs language-python">username_label = ttk.Label(root, text=<span class="hljs-string">"Username:"</span>)
+username_label.grid(column=<span class="hljs-number">0</span>, row=<span class="hljs-number">0</span>, sticky=tk.EW, padx=<span class="hljs-number">5</span>, pady=<span class="hljs-number">5</span>)
+
+username_entry = ttk.Entry(root)
+username_entry.grid(column=<span class="hljs-number">1</span>, row=<span class="hljs-number">0</span>, sticky=tk.EW, padx=<span class="hljs-number">5</span>, pady=<span class="hljs-number">5</span>)</code><button aria-label="Copy code" class="ssh-copy-button" title="Copy code" type="button"><span aria-hidden="true" class="ssh-copy-icon"></span><span class="ssh-copy-label">Copy</span></button></pre>
+      <p class="wp-block-paragraph">
+       Third, position the password label and entry on the first and second column of the second row:
+      </p>
+      <pre class="wp-block-code ssh-code-block" data-ssh-language="python" data-ssh-source="cGFzc3dvcmRfbGFiZWwgPSB0dGsuTGFiZWwocm9vdCwgdGV4dD0iUGFzc3dvcmQ6IikKcGFzc3dvcmRfbGFiZWwuZ3JpZChjb2x1bW49MCwgcm93PTEsIHN0aWNreT10ay5FVywgcGFkeD01LCBwYWR5PTUpCgpwYXNzd29yZF9lbnRyeSA9IHR0ay5FbnRyeShyb290LCAgc2hvdz0iKiIpCnBhc3N3b3JkX2VudHJ5LmdyaWQoY29sdW1uPTEsIHJvdz0xLCBzdGlja3k9dGsuRVcsIHBhZHg9NSwgcGFkeT01KQ=="><code class="ssh-highlighted hljs language-python">password_label = ttk.Label(root, text=<span class="hljs-string">"Password:"</span>)
+password_label.grid(column=<span class="hljs-number">0</span>, row=<span class="hljs-number">1</span>, sticky=tk.EW, padx=<span class="hljs-number">5</span>, pady=<span class="hljs-number">5</span>)
+
+password_entry = ttk.Entry(root,  show=<span class="hljs-string">"*"</span>)
+password_entry.grid(column=<span class="hljs-number">1</span>, row=<span class="hljs-number">1</span>, sticky=tk.EW, padx=<span class="hljs-number">5</span>, pady=<span class="hljs-number">5</span>)</code><button aria-label="Copy code" class="ssh-copy-button" title="Copy code" type="button"><span aria-hidden="true" class="ssh-copy-icon"></span><span class="ssh-copy-label">Copy</span></button></pre>
+      <p class="wp-block-paragraph">
+       Finally, position the login button on the third row. Since its
+       <code>
+        sticky
+       </code>
+       option sets to
+       <code>
+        E
+       </code>
+       , the button is aligned to the right of the third row.
+      </p>
+      <pre class="wp-block-code ssh-code-block" data-ssh-language="python" data-ssh-source="bG9naW5fYnV0dG9uID0gdHRrLkJ1dHRvbihyb290LCB0ZXh0PSJMb2dpbiIpCmxvZ2luX2J1dHRvbi5ncmlkKGNvbHVtbj0xLCByb3c9Mywgc3RpY2t5PXRrLkUsIHBhZHg9NSwgcGFkeT01KQ=="><code class="ssh-highlighted hljs language-python">login_button = ttk.Button(root, text=<span class="hljs-string">"Login"</span>)
+login_button.grid(column=<span class="hljs-number">1</span>, row=<span class="hljs-number">3</span>, sticky=tk.E, padx=<span class="hljs-number">5</span>, pady=<span class="hljs-number">5</span>)</code><button aria-label="Copy code" class="ssh-copy-button" title="Copy code" type="button"><span aria-hidden="true" class="ssh-copy-icon"></span><span class="ssh-copy-label">Copy</span></button></pre>
+      <h2 class="wp-block-heading" id="summary">
+       Summary
+       <a class="anchor" href="#summary" id="summary" title="Anchor for Summary">
+        #
+       </a>
+      </h2>
+      <ul class="wp-block-list">
+       <li>
+        Use the
+        <code>
+         columnconfigure()
+        </code>
+        and
+        <code>
+         rowconfigure()
+        </code>
+        methods to specify the weight of a column and a row of a grid.
+       </li>
+       <li>
+        Use
+        <code>
+         grid()
+        </code>
+        method to position a widget on a grid.
+       </li>
+       <li>
+        Use
+        <code>
+         sticky
+        </code>
+        option to align the position of the widget on a cell and define how the widget will be stretched.
+       </li>
+       <li>
+        Use
+        <code style="background-color: rgb(255, 255, 255); font-size: 16px;">
+         ipadx
+        </code>
+        ,
+        <code style="background-color: rgb(255, 255, 255); font-size: 16px;">
+         ipady
+        </code>
+        and
+        <code style="background-color: rgb(255, 255, 255); font-size: 16px;">
+         padx
+        </code>
+        ,
+        <code style="background-color: rgb(255, 255, 255); font-size: 16px;">
+         pady
+        </code>
+        to add internal and external paddings.
+       </li>
+      </ul>
+      <section aria-label="Page feedback" class="hfb-container hfb-style-minimal hfb-layout-inline hfb-align-center" data-post-id="1304">
+       <div class="hfb-question">
+        <p class="hfb-message">
+         Was this helpful?
+        </p>
+        <div aria-label="Was this helpful?" class="hfb-buttons" role="group">
+         <button aria-pressed="false" class="hfb-btn hfb-btn-yes" data-sentiment="positive" type="button">
+          <svg aria-hidden="true" class="hfb-icon" fill="none" focusable="false" viewbox="0 0 12 12">
+           <path d="M3.5 11H2a1 1 0 0 1-1-1V6.5a1 1 0 0 1 1-1h1.5m3.5-1v-2A1.5 1.5 0 0 0 5.5 1l-2 4.5V11h5.64a1 1 0 0 0 1-.85l.69-4.5a1 1 0 0 0-1-1.15H7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+           </path>
+          </svg>
+          <span>
+           Yes
+          </span>
+         </button>
+         <button aria-pressed="false" class="hfb-btn hfb-btn-no" data-sentiment="negative" type="button">
+          <svg aria-hidden="true" class="hfb-icon" fill="none" focusable="false" viewbox="0 0 12 12">
+           <path d="M3.5 1H2a1 1 0 0 0-1 1v3.5a1 1 0 0 0 1 1h1.5m3.5 1v2A1.5 1.5 0 0 1 5.5 11l-2-4.5V1h5.64a1 1 0 0 1 1 .85l.69 4.5a1 1 0 0 1-1 1.15H7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+           </path>
+          </svg>
+          <span>
+           No
+          </span>
+         </button>
+        </div>
+       </div>
+       <div class="hfb-form-container" hidden="">
+        <form class="hfb-feedback-form" novalidate="">
+         <label for="hfb-feedback-message-1304-1">
+          Please help us improve
+         </label>
+         <textarea id="hfb-feedback-message-1304-1" maxlength="1000" name="feedback_message" rows="4"></textarea>
+         <div class="hfb-form-actions">
+          <button class="hfb-btn hfb-btn-submit" type="submit">
+           Submit Feedback
+          </button>
+          <button class="hfb-btn-cancel" type="button">
+           Cancel
+          </button>
+         </div>
+        </form>
+       </div>
+       <div aria-live="polite" class="hfb-status" role="status">
+       </div>
+       <div class="hfb-thank-you" hidden="">
+        <p>
+         Thank you for your feedback!
+        </p>
+       </div>
+       <input class="hfb-form-display-mode" type="hidden" value="negative"/>
+      </section>
+      <div class="ad ad-336">
+       <div data-aa-adunit="/21722279357/336x280_OB_pythontutorial_2" data-aaad="true">
+       </div>
+      </div>
+     </div>
+    </article>
+    <nav aria-label="Page navigation" class="page-nav">
+     <div class="prev-page">
+      <a class="prev-page-anchor" href="https://www.pythontutorial.net/tkinter/tkinter-pack/">
+       <div aria-hidden="true" class="page-nav-arrow">
+        <img alt="" class="icon-prev-page" height="32" src="https://www.pythontutorial.net/wp-content/themes/evolution/img/left.svg" width="32"/>
+       </div>
+       <div class="page-nav-main page-nav-first">
+        <div class="page-nav-title">
+         Previous
+        </div>
+        <div class="page-title">
+         Tkinter Pack
+        </div>
+       </div>
+      </a>
+     </div>
+     <div class="next-page">
+      <a class="next-page-anchor" href="https://www.pythontutorial.net/tkinter/tkinter-place/">
+       <div class="page-nav-main page-nav-second">
+        <div class="page-nav-title">
+         Up next
+        </div>
+        <div class="page-title">
+         Tkinter Place
+        </div>
+       </div>
+       <div aria-hidden="true" class="page-nav-arrow">
+        <img alt="" class="icon-next-page" height="32" src="https://www.pythontutorial.net/wp-content/themes/evolution/img/right.svg" width="32"/>
+       </div>
+      </a>
+     </div>
+    </nav>
+   </main>
+   <aside class="widget-area sidebar" id="secondary">
+    <section class="widget widget_search" id="search-5">
+     <div class="smart-search-native smart-search-native--widget">
+      <div class="smart-search smart-search--overlay smart-search--comfortable smart-search--scheme-auto smart-search--appearance-follow-theme smart-search--shape-soft" data-config='{"indexUrl":"\/wp-content\/uploads\/smart-search\/search-index.d96c39809ec7.json","appUrl":"\/wp-content\/plugins\/smart-site-search\/assets\/js\/search-app.js","mode":"overlay","nativeFallbackUrl":"https:\/\/www.pythontutorial.net\/?s=","appearanceMode":"follow-theme","customSearchSelector":"","queryParameter":"q","minQueryLength":2,"maxResults":8,"threshold":0.320000000000000006661338147750939242541790008544921875,"keyboardShortcuts":true,"highlightTitle":true,"openNewTab":false,"loadingStrategy":"interaction","enableTypeFilters":true,"enableSnippets":true,"snippetLength":180,"synonyms":[],"analytics":{"enabled":false,"provider":"browser-event","minLength":2},"locale":"en_US","localeFiltering":false,"messages":{"loading":"Loading search\u2026","noResults":"No results found.","error":"Search could not be loaded.","allTypes":"All content","results":"results","pages":"Pages","startTyping":"Start typing to search.","recentSearches":"Recent searches","clearRecent":"Clear"}}' data-smart-search="" style="--ss-radius:10px;--ss-accent:#2563eb;--ss-custom-bg:#ffffff;--ss-custom-fg:#172033;--ss-custom-border:#d0d5dd;--ss-light-box-background:#ffffff;--ss-light-box-text:#172033;--ss-light-box-placeholder:#667085;--ss-light-box-border:#d0d5dd;--ss-light-popup-background:#ffffff;--ss-light-popup-text:#172033;--ss-light-popup-muted:#667085;--ss-light-popup-border:#d0d5dd;--ss-light-accent:#2563eb;--ss-light-hover:#eff6ff;--ss-dark-box-background:#2e2e2e;--ss-dark-box-text:#e3e3e3;--ss-dark-box-placeholder:#b8b8b8;--ss-dark-box-border:#454545;--ss-dark-popup-background:#171717;--ss-dark-popup-text:#e3e3e3;--ss-dark-popup-muted:#a9a9a9;--ss-dark-popup-border:#454545;--ss-dark-accent:#4db2ff;--ss-dark-hover:#242424;--ss-box-border-width:1px;--ss-popup-border-width:1px;--ss-box-radius:10px;--ss-popup-radius:12px;--ss-custom-shadow:0 16px 40px rgba(16,24,40,.18)">
+       <label class="screen-reader-text" for="smart-search-2">
+        Search
+       </label>
+       <div class="smart-search__field">
+        <span aria-hidden="true" class="smart-search__icon">
+        </span>
+        <input aria-autocomplete="list" aria-controls="smart-search-2-results" aria-expanded="false" autocomplete="off" class="smart-search__input" id="smart-search-2" placeholder="Search this siteâ¦" role="combobox" type="search"/>
+        <button aria-label="Clear search" class="smart-search__clear" hidden="" type="button">
+         Ã
+        </button>
+       </div>
+       <div class="smart-search__panel" hidden="" id="smart-search-2-results" role="listbox">
+       </div>
+       <div aria-live="polite" class="smart-search__status screen-reader-text">
+       </div>
+      </div>
+     </div>
+    </section>
+    <section class="widget widget_evolution_ad" id="evolution_ad-22">
+     <div class="ad ad-300">
+      <div data-aa-adunit="/21722279357/300x250_OB_pythontutorial" data-aaad="true">
+      </div>
+     </div>
+    </section>
+    <section class="widget widget_nav_menu" id="nav_menu-29">
+     <h2 class="widget-title">
+      Fundamentals
+     </h2>
+     <div class="menu-tkinter-fundamentals-container">
+      <ul class="menu" id="menu-tkinter-fundamentals">
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1355" id="menu-item-1355">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-hello-world/">
+         Tkinter Hello, World!
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1672" id="menu-item-1672">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-window/">
+         Tkinter Window
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1467" id="menu-item-1467">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-ttk/">
+         Tk Themed Widgets (ttk)
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1466" id="menu-item-1466">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-options/">
+         Setting Widget’s Options
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1659" id="menu-item-1659">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-command/">
+         Command Binding
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1658" id="menu-item-1658">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-event-binding/">
+         Event Binding
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1673" id="menu-item-1673">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-label/">
+         Label
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1674" id="menu-item-1674">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-button/">
+         Button
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1677" id="menu-item-1677">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-entry/">
+         Entry
+        </a>
+       </li>
+      </ul>
+     </div>
+    </section>
+    <section class="widget widget_nav_menu" id="nav_menu-30">
+     <h2 class="widget-title">
+      Geometry Managers
+     </h2>
+     <div class="menu-tkinter-geometry-managers-container">
+      <ul class="menu" id="menu-tkinter-geometry-managers">
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1360" id="menu-item-1360">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-pack/">
+         Pack
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1304 current_page_item menu-item-1359" id="menu-item-1359">
+        <a aria-current="page" href="https://www.pythontutorial.net/tkinter/tkinter-grid/">
+         Grid
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1358" id="menu-item-1358">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-place/">
+         Place
+        </a>
+       </li>
+      </ul>
+     </div>
+    </section>
+    <section class="widget widget_nav_menu" id="nav_menu-31">
+     <h2 class="widget-title">
+      Widgets
+     </h2>
+     <div class="menu-tkinter-widgets-container">
+      <ul class="menu" id="menu-tkinter-widgets">
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1468" id="menu-item-1468">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-frame/">
+         Frame
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1368" id="menu-item-1368">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-text/">
+         Text
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1367" id="menu-item-1367">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-scrollbar/">
+         Scrollbar
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2130" id="menu-item-2130">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-scrolledtext/">
+         ScrolledText
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1361" id="menu-item-1361">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-listbox/">
+         Listbox
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1366" id="menu-item-1366">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-separator/">
+         Separator
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1365" id="menu-item-1365">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-checkbox/">
+         Checkbox
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1364" id="menu-item-1364">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-radio-button/">
+         Radio Button
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1363" id="menu-item-1363">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-combobox/">
+         Combobox
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7393" id="menu-item-7393">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-panedwindow/">
+         PanedWindow
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1394" id="menu-item-1394">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-slider/">
+         Slider
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1402" id="menu-item-1402">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-spinbox/">
+         Spinbox
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1802" id="menu-item-1802">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-sizegrip/">
+         Sizegrip
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418" id="menu-item-1418">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-labelframe/">
+         LabelFrame
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1482" id="menu-item-1482">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-progressbar/">
+         Progressbar
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1615" id="menu-item-1615">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-notebook/">
+         Notebook
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1614" id="menu-item-1614">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-treeview/">
+         Treeview
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4649" id="menu-item-4649">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-canvas/">
+         Canvas
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4650" id="menu-item-4650">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-cursors/">
+         Cursors
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7392" id="menu-item-7392">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-photoimage/">
+         PhotoImage
+        </a>
+       </li>
+      </ul>
+     </div>
+    </section>
+    <section class="widget widget_nav_menu" id="nav_menu-33">
+     <h2 class="widget-title">
+      Dialogs and Menus
+     </h2>
+     <div class="menu-tkinter-dialogs-menus-container">
+      <ul class="menu" id="menu-tkinter-dialogs-menus">
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1605" id="menu-item-1605">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-messagebox/">
+         Message Box
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1604" id="menu-item-1604">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-askyesno/">
+         Displaying Yes/No Dialog
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1603" id="menu-item-1603">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-askokcancel/">
+         Displaying OK/Cancel Dialog
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1602" id="menu-item-1602">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-askretrycancel/">
+         Displaying Retry/Cancel Dialog
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1601" id="menu-item-1601">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-open-file-dialog/">
+         Displaying Open File Dialog
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1631" id="menu-item-1631">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-color-chooser/">
+         Displaying Color Chooser
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1606" id="menu-item-1606">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-menu/">
+         Menu
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1825" id="menu-item-1825">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-menubutton/">
+         Menubutton
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2154" id="menu-item-2154">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-optionmenu/">
+         OptionMenu
+        </a>
+       </li>
+      </ul>
+     </div>
+    </section>
+    <section class="widget widget_evolution_ad" id="evolution_ad-23">
+     <div class="ad ad-300">
+      <div data-aa-adunit="/21722279357/300x250_OB_pythontutorial_2" data-aaad="true">
+      </div>
+     </div>
+    </section>
+    <section class="widget widget_nav_menu" id="nav_menu-32">
+     <h2 class="widget-title">
+      Tkinter OOP
+     </h2>
+     <div class="menu-tkinter-oop-container">
+      <ul class="menu" id="menu-tkinter-oop">
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1545" id="menu-item-1545">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-object-oriented-window/">
+         Creating an Object-Oriented Window
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1544" id="menu-item-1544">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-object-oriented-frame/">
+         Creating an Object-Oriented Frame
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1543" id="menu-item-1543">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-object-oriented-application/">
+         Developing Tkinter Object-Oriented App
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1542" id="menu-item-1542">
+        <a href="https://www.pythontutorial.net/tkinter/tkraise/">
+         Switching Between Frames
+        </a>
+       </li>
+      </ul>
+     </div>
+    </section>
+    <section class="widget widget_nav_menu" id="nav_menu-34">
+     <h2 class="widget-title">
+      Tkinter Application Examples
+     </h2>
+     <div class="menu-tkinter-applications-container">
+      <ul class="menu" id="menu-tkinter-applications">
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1616" id="menu-item-1616">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-example/">
+         Temperature Converter Application
+        </a>
+       </li>
+      </ul>
+     </div>
+    </section>
+    <section class="widget widget_nav_menu" id="nav_menu-39">
+     <h2 class="widget-title">
+      Modifying Themes &amp; Styles
+     </h2>
+     <div class="menu-tkinter-themes-styles-container">
+      <ul class="menu" id="menu-tkinter-themes-styles">
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2070" id="menu-item-2070">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-theme/">
+         Ttk Theme
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2069" id="menu-item-2069">
+        <a href="https://www.pythontutorial.net/tkinter/ttk-style/">
+         Ttk Styles
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2068" id="menu-item-2068">
+        <a href="https://www.pythontutorial.net/tkinter/ttk-elements/">
+         Ttk Elements
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2067" id="menu-item-2067">
+        <a href="https://www.pythontutorial.net/tkinter/ttk-style-map/">
+         Ttk Style map()
+        </a>
+       </li>
+      </ul>
+     </div>
+    </section>
+    <section class="widget widget_nav_menu" id="nav_menu-36">
+     <h2 class="widget-title">
+      Tkinter Asynchronous Programming
+     </h2>
+     <div class="menu-tkinter-async-container">
+      <ul class="menu" id="menu-tkinter-async">
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1757" id="menu-item-1757">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-after/">
+         Scheduling an Action: after() Method
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1756" id="menu-item-1756">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-thread/">
+         Developing Multithreading Tkinter Apps
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1769" id="menu-item-1769">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-thread-progressbar/">
+         Displaying a Progressbar While a Thread is Running
+        </a>
+       </li>
+      </ul>
+     </div>
+    </section>
+    <section class="widget widget_nav_menu" id="nav_menu-40">
+     <h2 class="widget-title">
+      Advanced Tkinter
+     </h2>
+     <div class="menu-tkinter-advanced-container">
+      <ul class="menu" id="menu-tkinter-advanced">
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2502" id="menu-item-2502">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-mvc/">
+         Tkinter MVC
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2524" id="menu-item-2524">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-validation/">
+         Tkinter Validation
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2523" id="menu-item-2523">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-matplotlib/">
+         Tkinter Matplotlib
+        </a>
+       </li>
+       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6894" id="menu-item-6894">
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-system-tray/">
+         Tkinter System Tray
+        </a>
+       </li>
+      </ul>
+     </div>
+    </section>
+    <section class="widget widget_evolution_ad" id="evolution_ad-24">
+     <div class="ad ad-300">
+      <div data-aa-adunit="/21722279357/300x250_OB_pythontutorial_3" data-aaad="true">
+      </div>
+     </div>
+    </section>
+   </aside>
+   <footer class="site-footer" id="colophon">
+    <div class="site-footer-widgets">
+     <div class="site-footer-sidebar widget">
+      <h2 class="widget-title">
+       About pythontutorial.net
+      </h2>
+      <div class="textwidget custom-html-widget">
+       Pythontutorial.net helps you master Python programming from scratch fast.
+      </div>
+      <h2 class="widget-title">
+       Python References
+      </h2>
+      <div class="menu-python-references-container">
+       <ul class="menu" id="menu-python-references">
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1949" id="menu-item-1949">
+         <a href="https://www.pythontutorial.net/python-string-methods/">
+          Python String Methods
+         </a>
+        </li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4772" id="menu-item-4772">
+         <a href="https://www.pythontutorial.net/python-built-in-functions/">
+          Python Built-in Functions
+         </a>
+        </li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6525" id="menu-item-6525">
+         <a href="https://www.pythontutorial.net/python-standard-library/">
+          Python Standard Library
+         </a>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1950" id="menu-item-1950">
+         <a href="https://www.mysqltutorial.org/python-mysql/" target="_blank">
+          Python MySQL
+         </a>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1951" id="menu-item-1951">
+         <a href="https://www.postgresqltutorial.com/postgresql-python/" target="_blank">
+          Python PostgreSQL
+         </a>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1952" id="menu-item-1952">
+         <a href="https://www.oracletutorial.com/python-oracle/" target="_blank">
+          Python Oracle
+         </a>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1953" id="menu-item-1953">
+         <a href="https://www.sqlitetutorial.net/sqlite-python/" target="_blank">
+          Python SQLite
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="site-footer-sidebar widget">
+      <h2 class="widget-title">
+       Recent Python Tutorials
+      </h2>
+      <ul>
+       <li>
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-booleanvar/">
+         Tkinter BooleanVar
+        </a>
+       </li>
+       <li>
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-doublevar/">
+         Tkinter DoubleVar
+        </a>
+       </li>
+       <li>
+        <a href="https://www.pythontutorial.net/tkinter/tkinter-intvar/">
+         Tkinter IntVar
+        </a>
+       </li>
+       <li>
+        <a href="https://www.pythontutorial.net/python-basics/python-assignment-operators/">
+         Python Assignment Operators
+        </a>
+       </li>
+       <li>
+        <a href="https://www.pythontutorial.net/python-basics/python-arithmetic-operators/">
+         Python Arithmetic Operators
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="site-footer-sidebar widget">
+      <h2 class="widget-title">
+       Site Links
+      </h2>
+      <div class="menu-site-links-container">
+       <ul class="menu" id="menu-site-links">
+        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3459" id="menu-item-3459">
+         <a href="https://www.pythontutorial.net/donation/" target="_blank">
+          Donation â¤ï¸
+         </a>
+        </li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-21" id="menu-item-21">
+         <a href="https://www.pythontutorial.net/">
+          Home
+         </a>
+        </li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20" id="menu-item-20">
+         <a href="https://www.pythontutorial.net/contact/">
+          Contact
+         </a>
+        </li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19" id="menu-item-19">
+         <a href="https://www.pythontutorial.net/about/">
+          About
+         </a>
+        </li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-22" id="menu-item-22">
+         <a href="https://www.pythontutorial.net/privacy-policy/" rel="privacy-policy">
+          Privacy Policy
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+    </div>
+    <div class="site-info">
+     <div class="textwidget custom-html-widget">
+      <p>
+       Copyright © 2021 - Present, By
+       <a href="https://www.pythontutorial.net/" title="Python Tutorial">
+        Python Tutorial
+       </a>
+       . All Rights Reserved.
+      </p>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script type="speculationrules">
+   {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/evolution/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+  </script>
+  <script id="hfb-frontend-js-extra">
+   var hfbData = {"restUrl":"https://www.pythontutorial.net/wp-json/helpful-feedback/v1/submit","settings":{"message_text":"Was this helpful?","yes_label":"Yes","no_label":"No","form_label":"Please help us improve","submit_label":"Submit Feedback","cancel_label":"Cancel","thank_you_message":"Thank you for your feedback!","form_display_mode":"negative","enable_form":true,"enable_notifications":false,"notification_email":"everyonecandev@gmail.com","block_style":"minimal","block_layout":"inline","content_alignment":"center","auto_display_enabled":true,"auto_display_post":true,"auto_display_page":true,"excluded_post_ids":[10,12,3,16],"excluded_category_ids":[]}};
+//# sourceURL=hfb-frontend-js-extra
+  </script>
+  <script defer="" id="hfb-frontend-js" src="https://www.pythontutorial.net/wp-content/uploads/essential-optimize/cache/4f5d51d1d3c7422a4759780dd60a1d47505a6ce899c8a38f600647ad9c06fedd.js">
+  </script>
+  <script data-wp-strategy="defer" defer="" id="smart-search-fuse-js" src="https://www.pythontutorial.net/wp-content/plugins/smart-site-search/assets/vendor/fuse/fuse.min.js?ver=7.1.0">
+  </script>
+  <script data-wp-strategy="defer" defer="" id="smart-search-loader-js" src="https://www.pythontutorial.net/wp-content/plugins/smart-site-search/assets/js/loader.js?ver=1789011183">
+  </script>
+  <script data-wp-strategy="defer" defer="" id="ev-back-to-top-js" src="https://www.pythontutorial.net/wp-content/themes/evolution/js/back-to-top.js?ver=2.0.48">
+  </script>
+  <script data-wp-strategy="defer" defer="" id="ev-mode-js" src="https://www.pythontutorial.net/wp-content/themes/evolution/js/switch-theme.js?ver=2.0.48">
+  </script>
+  <script data-wp-strategy="defer" defer="" id="ev-navbar-js" src="https://www.pythontutorial.net/wp-content/themes/evolution/js/navbar.js?ver=2.0.48">
+  </script>
+  <script data-wp-strategy="defer" defer="" id="ev-mobile-menu-js" src="https://www.pythontutorial.net/wp-content/themes/evolution/js/mobile-menu.js?ver=2.0.48">
+  </script>
+  <script data-wp-strategy="defer" defer="" id="ev-search-table-js" src="https://www.pythontutorial.net/wp-content/themes/evolution/js/search-table.js?ver=2.0.48">
+  </script>
+  <script data-wp-strategy="defer" defer="" id="ev-app-js" src="https://www.pythontutorial.net/wp-content/themes/evolution/js/index.js?ver=2.0.48">
+  </script>
+  <script defer="" id="smart-syntax-highlighting-clipboard-js" src="https://www.pythontutorial.net/wp-content/uploads/essential-optimize/cache/a84041ad7e03a4a2876f198698cdf26fa883a1372ea552b672c7343601e26a1e.js">
+  </script>
+  <script crossorigin="anonymous" data-cf-beacon='{"version":"2024.11.0","token":"60e83cdbd838461899930ce0fa9201d7","r":1,"spa":2}' integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" type="module">
+  </script>
+ </body>
+</html>
+<!-- Smart Static | Build: ss-20260915-063146-1cxo9m | Version: 1.5.8 | Generated: 2026-09-15T06:31:46+00:00 -->
