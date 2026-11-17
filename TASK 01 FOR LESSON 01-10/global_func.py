@@ -31,7 +31,7 @@ def create_pages():
 
 
 def show_page(page_name):
-    glob.pages[page_name].tkraise() 
+    
 
     match page_name:
         case 'home':
@@ -40,3 +40,7 @@ def show_page(page_name):
             session_func.setup_session()
         case 'upload session':
             uploadSession_func.setup_uploadSession()
+        case _:
+            pass
+
+    glob.pages[page_name].tkraise() 

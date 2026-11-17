@@ -3,6 +3,7 @@ import datetime, winsound
 import session_func, global_func, uploadSession_func, home_func, globals
 from tkinter import ttk
 import tkinter as tk
+from tkinter import messagebox
 
 
 
@@ -52,32 +53,40 @@ def start_progressbar(hrs, mins):
 
     progress.grid(row= 1, column= 2)
 
+def stop_session():
+    if tk.messagebox.askyesno(message = 'Stop session?'):
+        glob.datetime_session_end = datetime.datetime.now()
+        pause_timer_pressed()
+        
 
 def start_session_pressed(hrs, mins):
     
-    
+    glob.datetime_session_start = datetime.datetime.now()
     timer_label = ttk.Label(glob.pages['session'], text= glob.session_timer)
     timer_label.grid(row= 1, column= 1, sticky= tk.N)
     timer_label.after(1000, lambda: update_time( timer_label))
     start_btn_frame = tk.Frame(glob.pages['session'])
     start_btn_frame.grid(row= 0, column= 0 , sticky= tk.NSEW)
-    stop_time_button = ttk.Button(start_btn_frame, text= 'Pause', command= lambda: stop_timer_pressed(stop_time_button))
+    stop_time_button = ttk.Button(start_btn_frame, text= 'Pause', command= lambda: pause_timer_pressed(stop_time_button))
     stop_time_button.grid(row= 0, column= 0, sticky= tk.NSEW)
+    ttk.Button(glob.pages['session'], text='Upload session', command= lambda: global_func.show_page('upload session')).grid(row=3, column=3, sticky= tk.NSEW)
+    ttk.Button(glob.pages['session'], text='stop session', command= stop_session).grid(row=2, column=3, sticky= tk.NSEW)
     #stop_time_button.pack() pack is an option if i have already made a frame
     start_btn_frame.tkraise()
     start_progressbar(hrs, mins)
 
 
-def stop_timer_pressed(stp_time_btn):
-    
+def pause_timer_pressed(stp_time_btn = None):
     
     if not glob.stop_flag:
         glob.stop_flag = True
-        stp_time_btn.configure(text = 'Pause')
-        
+        if stp_time_btn != None:
+            stp_time_btn.configure(text = 'Pause')
+      
     else: 
         glob.stop_flag = False
-        stp_time_btn.configure(text = 'Resume')
+        if stp_time_btn != None:
+            stp_time_btn.configure(text = 'Resume')
 
 def setup_session():
     timer_entry_hour = ttk.Combobox(glob.pages['session'], values =glob.combobox_hours)
@@ -89,6 +98,5 @@ def setup_session():
     
     ttk.Button(glob.pages['session'], text = 'start session', command= lambda: session_func.start_session_pressed(timer_entry_hour, timer_entry_minutes)).grid(row= 0, column= 0, sticky= tk.NSEW)
     ttk.Button(glob.pages["session"],text="Back",command=lambda: global_func.show_page("home")).grid(row= 3, column= 0, sticky= tk.NSEW)
-    ttk.Button(glob.pages['session'], text='Upload session', command=uploadSession_func.upload_session).grid(row=3, column=3, sticky= tk.NSEW)
-
+    
     

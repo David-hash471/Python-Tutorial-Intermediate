@@ -9,7 +9,21 @@ session_timer = datetime.timedelta()
 stop_flag = True
 progressbar =0
 pages = {}
+date_today = datetime.date.today()
+datetime_session_start = None
+datetime_session_end = None
+focus_area_txt = ''
 
 
 combobox_hours = ['0', '1', '2', '3']
 combobox_minutes = [ f'{minute:02d}' for minute in range(0, 60, 5)]
+
+session_data_structure = ['Date', 'Start Time', 'End Time', 'Session Lenght', 'Study Time', 'Break Time', 'Focus Area', 'Notes']
+
+def calculate_times():
+    
+    session_length = datetime_session_end - datetime_session_start
+    break_time = session_length - session_timer
+
+    return [session_length, break_time]
+
