@@ -1,6 +1,6 @@
 import globals as glob
-import datetime
-import winsound
+import datetime, winsound
+import session_func, global_func, uploadSession_func, home_func, globals
 from tkinter import ttk
 import tkinter as tk
 
@@ -78,5 +78,17 @@ def stop_timer_pressed(stp_time_btn):
     else: 
         glob.stop_flag = False
         stp_time_btn.configure(text = 'Resume')
+
+def setup_session():
+    timer_entry_hour = ttk.Combobox(glob.pages['session'], values =glob.combobox_hours)
+    timer_entry_minutes = ttk.Combobox(glob.pages['session'], values =glob.combobox_minutes)
+    timer_entry_hour.set('0')
+    timer_entry_minutes.set('00')
+    timer_entry_hour.grid(row= 0, column= 1)
+    timer_entry_minutes.grid(row= 0, column= 2)
+    
+    ttk.Button(glob.pages['session'], text = 'start session', command= lambda: session_func.start_session_pressed(timer_entry_hour, timer_entry_minutes)).grid(row= 0, column= 0, sticky= tk.NSEW)
+    ttk.Button(glob.pages["session"],text="Back",command=lambda: global_func.show_page("home")).grid(row= 3, column= 0, sticky= tk.NSEW)
+    ttk.Button(glob.pages['session'], text='Upload session', command=uploadSession_func.upload_session).grid(row=3, column=3, sticky= tk.NSEW)
 
     
