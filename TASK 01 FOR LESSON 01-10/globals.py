@@ -13,6 +13,7 @@ date_today = datetime.date.today()
 datetime_session_start = None
 datetime_session_end = None
 focus_area_txt = ''
+notes_txt = ''
 
 
 combobox_hours = ['0', '1', '2', '3']
@@ -26,4 +27,7 @@ def calculate_times():
     break_time = session_length - session_timer
 
     return [session_length, break_time]
+
+def session_data():
+    return [date_today,datetime_session_start,datetime_session_end,(datetime_session_end - datetime_session_start),session_timer,((datetime_session_end - datetime_session_start) - session_timer), focus_area_txt, notes_txt]
 

@@ -53,11 +53,17 @@ def start_progressbar(hrs, mins):
 
     progress.grid(row= 1, column= 2)
 
-def stop_session():
+def stop_session(stop_session_btn, stop_time_btn):
+    
+    ttk.Button(glob.pages['session'], text='Upload session', command= lambda: global_func.show_page('upload session')).grid(row=3, column=3, sticky= tk.NSEW)
     if tk.messagebox.askyesno(message = 'Stop session?'):
+        stop_session_btn.grid_remove()
+        stop_time_btn.grid_remove()
         glob.datetime_session_end = datetime.datetime.now()
-        pause_timer_pressed()
-        
+        glob.stop_flag = False
+        winsound.Beep(1000, 1000)
+    else: 
+        pass    
 
 def start_session_pressed(hrs, mins):
     
@@ -69,8 +75,8 @@ def start_session_pressed(hrs, mins):
     start_btn_frame.grid(row= 0, column= 0 , sticky= tk.NSEW)
     stop_time_button = ttk.Button(start_btn_frame, text= 'Pause', command= lambda: pause_timer_pressed(stop_time_button))
     stop_time_button.grid(row= 0, column= 0, sticky= tk.NSEW)
-    ttk.Button(glob.pages['session'], text='Upload session', command= lambda: global_func.show_page('upload session')).grid(row=3, column=3, sticky= tk.NSEW)
-    ttk.Button(glob.pages['session'], text='stop session', command= stop_session).grid(row=2, column=3, sticky= tk.NSEW)
+    stop_session_btn = ttk.Button(glob.pages['session'], text='stop session', command= lambda: stop_session(stop_session_btn, stop_time_button))
+    stop_session_btn.grid(row=2, column=3, sticky= tk.NSEW)
     #stop_time_button.pack() pack is an option if i have already made a frame
     start_btn_frame.tkraise()
     start_progressbar(hrs, mins)

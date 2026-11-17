@@ -17,17 +17,19 @@ def setup_uploadSession():
     study_time.grid(row=4, column=0)
     break_time = ttk.Label(glob.pages['upload session'], text= f'Break Time:{glob.calculate_times()[1]}')
     break_time.grid(row=5, column=0)
-
+    ttk.Label(glob.pages['upload session'], text= 'Focus Area').grid(row=1, column= 1)
+    ttk.Label(glob.pages['upload session'], text= 'Notes').grid(row=2, column= 1)
     focus_area = ttk.Entry(glob.pages['upload session'], textvariable='Focus Area')
-    focus_area.grid(row= 1, column=1)
+    focus_area.grid(row= 1, column=2)
+    notes = ttk.Entry(glob.pages['upload session'])
+    notes.grid(row= 2, column= 2)
+    ttk.Button(glob.pages['upload session'], text= 'Save', command= lambda: save_session(focus_area, notes)).grid(row=6,column=3)
+
+
+def save_session(focus_area, notes):
     glob.focus_area_txt = focus_area.get()
-    notes = ttk.Notebook(glob.pages['upload session'])
-    notes.grid(row= 2, column= 2, sticky= tk.NSEW)
-    ttk.Button(glob.pages['upload session'], text= 'Save', command=save_session).grid(row=3,column=3)
-
-
-def save_session():
-
+    glob.notes_txt = notes.get()
 
     with open('session_data.csv', 'a', newline= '') as file_handle_append:
         append_object = csv.writer(file_handle_append)
+        append_object.writerow(glob.session_data())
