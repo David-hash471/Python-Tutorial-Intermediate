@@ -15,6 +15,9 @@ datetime_session_end = None
 focus_area_txt = ''
 notes_txt = ''
 page_been_setup = {}
+update_time_active = False
+
+session_rvh_initialized = False
 
 session_data_structure = ['Date', 'Start Time', 'End Time', 'Session Lenght', 'Study Time', 'Break Time', 'Focus Area', 'Notes']
 

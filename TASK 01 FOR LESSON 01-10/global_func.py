@@ -38,9 +38,12 @@ def show_page(page_name):
         case 'home':
             home_func.setup_home()
             
-        case 'session':
-            session_func.setup_session()
             
+        case 'session':
+            if not glob.session_rvh_initialized:
+                session = glob.Reset_values_holder('session')
+                glob.session_rvh_initialized = True
+            session_func.setup_session()
         case 'upload session':
             uploadSession_func.setup_uploadSession()
             

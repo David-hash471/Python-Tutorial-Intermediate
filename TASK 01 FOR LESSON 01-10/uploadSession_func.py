@@ -3,7 +3,7 @@ from tkinter import ttk
 import tkinter as tk
 import csv, global_func
 from tkinter import messagebox
-
+import datetime 
 
 
 def setup_uploadSession():
@@ -26,7 +26,7 @@ def setup_uploadSession():
     notes.grid(row= 2, column= 2)
     ttk.Button(glob.pages['upload session'], text= 'Save', command= lambda: save_session(focus_area, notes)).grid(row=6,column=3)
     glob.return_rvh_object('session').return_kwarg_values()['timer_label'].grid_remove()
-    glob.return_rvh_object('session').return_kwarg_values()['upload_btn'].grid_remove()
+    glob.return_rvh_object('session').return_kwarg_values()['finish_upload_session_btn'].grid_remove()
 
 
 def save_session(focus_area, notes):
@@ -34,10 +34,12 @@ def save_session(focus_area, notes):
     glob.notes_txt = notes.get()
 
 
-    if messagebox.askokcancel(None, message=  'Session has been saved'):
+    if messagebox.askokcancel(None, message=  'Save Session?'):
        with open('session_data.csv', 'a', newline= '') as file_handle_append:
             append_object = csv.writer(file_handle_append)
             append_object.writerow(glob.session_data()) 
             global_func.show_page('home')
+            glob.session_timer = datetime.timedelta()
     else:
         global_func.show_page('home')
+        glob.session_timer = datetime.timedelta()
