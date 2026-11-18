@@ -37,29 +37,21 @@ def show_page(page_name):
     match page_name:
         case 'home':
             home_func.setup_home()
-            '''
-            if not glob.page_been_setup[page_name]:
-                home_func.setup_home()
-                glob.page_been_setup[page_name] = True
-            else:
-                pass'''
+            
         case 'session':
             session_func.setup_session()
-            '''
-            if not glob.page_been_setup[page_name]:
-                session_func.setup_session()
-                glob.page_been_setup[page_name] = True
-            else:
-                pass'''
+            
         case 'upload session':
             uploadSession_func.setup_uploadSession()
-            '''
-            if not glob.page_been_setup[page_name]:
-                uploadSession_func.setup_uploadSession()
-                glob.page_been_setup[page_name] = True
-            else:
-                pass'''
+            
         case _:
             pass
 
     glob.pages[page_name].tkraise() 
+
+
+ 
+
+        
+        
+ 

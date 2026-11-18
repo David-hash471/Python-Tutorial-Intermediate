@@ -57,7 +57,9 @@ def start_progressbar(hrs, mins):
 
 def stop_session(stop_session_btn, stop_time_btn):
     
-    ttk.Button(glob.pages['session'], text='Upload session', command= lambda: global_func.show_page('upload session')).grid(row=3, column=3, sticky= tk.NSEW)
+    upload_btn = ttk.Button(glob.pages['session'], text='Upload session', command= lambda: global_func.show_page('upload session'))
+    upload_btn.grid(row=3, column=3, sticky= tk.NSEW)
+    glob.return_rvh_object('session').add_values(upload_btn = upload_btn)
     if tk.messagebox.askyesno(message = 'Stop session?'):
         stop_session_btn.grid_remove()
         stop_time_btn.grid_remove()
@@ -82,6 +84,11 @@ def start_session_pressed(hrs, mins):
     #stop_time_button.pack() pack is an option if i have already made a frame
     start_btn_frame.tkraise()
     start_progressbar(hrs, mins)
+    glob.return_rvh_object('session').add_values(timer_label = timer_label, timer= glob.session_timer)
+    glob.return_rvh_object('session').return_kwarg_values()['combobox1'].grid_remove()
+    glob.return_rvh_object('session').return_kwarg_values()['combobox2'].grid_remove()
+    
+        
 
 
 def pause_timer_pressed(stp_time_btn = None):
@@ -107,5 +114,6 @@ def setup_session():
     
     ttk.Button(glob.pages['session'], text = 'start session', command= lambda: session_func.start_session_pressed(timer_entry_hour, timer_entry_minutes)).grid(row= 0, column= 0, sticky= tk.NSEW)
     ttk.Button(glob.pages["session"],text="Back",command=lambda: global_func.show_page("home")).grid(row= 3, column= 0, sticky= tk.NSEW)
+    session = glob.Reset_values_holder('session', combobox1 = timer_entry_hour, combobox2 = timer_entry_minutes)
     
     

@@ -25,6 +25,8 @@ def setup_uploadSession():
     notes = ttk.Entry(glob.pages['upload session'])
     notes.grid(row= 2, column= 2)
     ttk.Button(glob.pages['upload session'], text= 'Save', command= lambda: save_session(focus_area, notes)).grid(row=6,column=3)
+    glob.return_rvh_object('session').return_kwarg_values()['timer_label'].grid_remove()
+    glob.return_rvh_object('session').return_kwarg_values()['upload_btn'].grid_remove()
 
 
 def save_session(focus_area, notes):
