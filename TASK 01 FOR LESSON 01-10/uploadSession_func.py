@@ -1,7 +1,8 @@
 import globals as glob
 from tkinter import ttk
 import tkinter as tk
-import csv
+import csv, global_func
+from tkinter import messagebox
 
 
 
@@ -30,6 +31,11 @@ def save_session(focus_area, notes):
     glob.focus_area_txt = focus_area.get()
     glob.notes_txt = notes.get()
 
-    with open('session_data.csv', 'a', newline= '') as file_handle_append:
-        append_object = csv.writer(file_handle_append)
-        append_object.writerow(glob.session_data())
+
+    if messagebox.askokcancel(None, message=  'Session has been saved'):
+       with open('session_data.csv', 'a', newline= '') as file_handle_append:
+            append_object = csv.writer(file_handle_append)
+            append_object.writerow(glob.session_data()) 
+            global_func.show_page('home')
+    else:
+        global_func.show_page('home')

@@ -25,6 +25,7 @@ def create_pages():
         page = tk.Frame(glob.root)
         page.grid(row = 1, column=0, sticky= tk.NSEW)
         glob.pages[name] = page
+        glob.page_been_setup[name] = False
         for i in range(4):
             glob.pages[name].rowconfigure(i, weight= 1)
             glob.pages[name].columnconfigure(i, weight= 1)
@@ -36,10 +37,28 @@ def show_page(page_name):
     match page_name:
         case 'home':
             home_func.setup_home()
+            '''
+            if not glob.page_been_setup[page_name]:
+                home_func.setup_home()
+                glob.page_been_setup[page_name] = True
+            else:
+                pass'''
         case 'session':
             session_func.setup_session()
+            '''
+            if not glob.page_been_setup[page_name]:
+                session_func.setup_session()
+                glob.page_been_setup[page_name] = True
+            else:
+                pass'''
         case 'upload session':
             uploadSession_func.setup_uploadSession()
+            '''
+            if not glob.page_been_setup[page_name]:
+                uploadSession_func.setup_uploadSession()
+                glob.page_been_setup[page_name] = True
+            else:
+                pass'''
         case _:
             pass
 

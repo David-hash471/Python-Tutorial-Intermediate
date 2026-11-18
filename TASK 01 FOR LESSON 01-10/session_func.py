@@ -5,6 +5,8 @@ from tkinter import ttk
 import tkinter as tk
 from tkinter import messagebox
 
+combobox_hours = ['0', '1', '2', '3']
+combobox_minutes = [ f'{minute:02d}' for minute in range(0, 60, 5)]
 
 
     
@@ -95,8 +97,9 @@ def pause_timer_pressed(stp_time_btn = None):
             stp_time_btn.configure(text = 'Resume')
 
 def setup_session():
-    timer_entry_hour = ttk.Combobox(glob.pages['session'], values =glob.combobox_hours)
-    timer_entry_minutes = ttk.Combobox(glob.pages['session'], values =glob.combobox_minutes)
+    global combobox_hours, combobox_minutes
+    timer_entry_hour = ttk.Combobox(glob.pages['session'], values =combobox_hours)
+    timer_entry_minutes = ttk.Combobox(glob.pages['session'], values =combobox_minutes)
     timer_entry_hour.set('0')
     timer_entry_minutes.set('00')
     timer_entry_hour.grid(row= 0, column= 1)

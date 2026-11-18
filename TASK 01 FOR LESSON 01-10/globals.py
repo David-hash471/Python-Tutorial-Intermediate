@@ -14,10 +14,7 @@ datetime_session_start = None
 datetime_session_end = None
 focus_area_txt = ''
 notes_txt = ''
-
-
-combobox_hours = ['0', '1', '2', '3']
-combobox_minutes = [ f'{minute:02d}' for minute in range(0, 60, 5)]
+page_been_setup = {}
 
 session_data_structure = ['Date', 'Start Time', 'End Time', 'Session Lenght', 'Study Time', 'Break Time', 'Focus Area', 'Notes']
 
