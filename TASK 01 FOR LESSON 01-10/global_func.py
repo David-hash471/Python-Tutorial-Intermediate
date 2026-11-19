@@ -24,11 +24,11 @@ def create_pages():
     for name in ('session', 'home', 'upload session'):
         page = tk.Frame(glob.root)
         page.grid(row = 1, column=0, sticky= tk.NSEW)
-        glob.pages[name] = page
-        glob.page_been_setup[name] = False
+        glob.pages[name] = [page, False]
+        
         for i in range(4):
-            glob.pages[name].rowconfigure(i, weight= 1)
-            glob.pages[name].columnconfigure(i, weight= 1)
+            glob.pages[name][0].rowconfigure(i, weight= 1)
+            glob.pages[name][0].columnconfigure(i, weight= 1)
 
 
 def show_page(page_name):
@@ -50,7 +50,7 @@ def show_page(page_name):
         case _:
             pass
 
-    glob.pages[page_name].tkraise() 
+    glob.pages[page_name][0].tkraise() 
 
 
  
