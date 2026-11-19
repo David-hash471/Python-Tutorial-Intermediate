@@ -16,9 +16,7 @@ datetime_session_start = None
 datetime_session_end = None
 focus_area_txt = ''
 notes_txt = ''
-
 update_time_active = False
-session_rvh_initialized = False
 session_timer_upload = datetime.timedelta()
 
 
@@ -29,11 +27,14 @@ def calculate_times():
     
     session_length = datetime_session_end - datetime_session_start
     break_time = session_length - session_timer_upload
-
-    return [session_length, break_time]
+    s = int(session_length.total_seconds())
+    b = int(break_time.total_seconds())
+    session_len = datetime.timedelta(seconds = s)
+    break_t = datetime.timedelta(seconds= b)
+    return [session_len, break_t]
 
 def session_data():
-    return [date_today,datetime_session_start,datetime_session_end,(datetime_session_end - datetime_session_start),session_timer_upload,((datetime_session_end - datetime_session_start) - session_timer_upload), focus_area_txt, notes_txt]
+    return [date_today,datetime_session_start,datetime_session_end,calculate_times()[0],session_timer_upload,calculate_times()[1], focus_area_txt, notes_txt]
 
 
 class Reset_values_holder:
@@ -72,25 +73,26 @@ def return_obj(var_name, name):
 
 class Task:
     def __init__(self, name):
-        self._frame_status = 'READY'
-        self._name = name
+        self.frame_status = 'READY'
+        self.name = name
         store_obj(self, st_objs,name)
 
     def change_st(self):
         
-        if self._frame_status == 'READY':
-            self._frame_status = 'IN_USE'
-        elif self._frame_status == 'IN_USE':
-            self._frame_status = 'USED'
-        elif self._frame_status == 'USED':
-            self._frame_status = 'READY'
+        if self.frame_status == 'READY':
+            self.frame_status = 'IN_USE'
+        elif self.frame_status == 'IN_USE':
+            self.frame_status = 'USED'
+        elif self.frame_status == 'USED':
+            self.frame_status = 'READY'
+        
 
     def return_st(self):
-        if self._frame_status == 'READY':
+        if self.frame_status == 'READY':
             return 0
-        elif self._frame_status == 'IN_USE':
+        elif self.frame_status == 'IN_USE':
             return 1
-        elif self._frame_status == 'USED':
+        elif self.frame_status == 'USED':
             return 2        
         
 

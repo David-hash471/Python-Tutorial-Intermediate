@@ -37,20 +37,35 @@ def show_page(page_name):
     match page_name:
         case 'home':
             home_func.setup_home()
-            
+            glob.pages[page_name][0].tkraise()
             
         case 'session':
-            if not glob.session_rvh_initialized:
+            if not glob.pages['session'][1]:
                 session = glob.Reset_values_holder('session')
-                glob.session_rvh_initialized = True
-            session_func.setup_session()
+                session_st = glob.Task('session_st')
+                glob.pages['session'][1] = True
+            else:
+                pass
+            if glob.return_obj(glob.st_objs, 'session_st').return_st() == 0:
+                session_func.setup_session()
+                glob.return_obj(glob.st_objs,'session_st').change_st()
+                glob.pages[page_name][0].tkraise()
+            elif glob.return_obj(glob.st_objs, 'session_st').return_st() == 1:
+                glob.pages[page_name][0].tkraise() #change state in functionality
+            elif glob.return_obj(glob.st_objs, 'session_st').return_st() == 2:
+                session_func.clear_session()
+                glob.return_obj(glob.st_objs, 'session_st').change_st()
+                
+                show_page(page_name)
+
         case 'upload session':
             uploadSession_func.setup_uploadSession()
-            
+            glob.pages[page_name][0].tkraise()
+
         case _:
             pass
 
-    glob.pages[page_name][0].tkraise() 
+     
 
 
  

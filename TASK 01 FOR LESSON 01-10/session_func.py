@@ -59,32 +59,37 @@ def start_progressbar(hrs, mins):
 def stop_session(stop_session_btn, stop_time_btn):
     
     if tk.messagebox.askyesno(message = 'Stop session?'):
+        glob.return_obj(glob.st_objs, 'session_st').change_st()
         glob.update_time_active = False
         stop_session_btn.grid_remove()
         stop_time_btn.grid_remove()
         glob.datetime_session_end = datetime.datetime.now()
         glob.stop_flag = False
         winsound.Beep(1000, 1000)
-        session_timer_upload = glob.session_timer
-        session_timer = datetime.timedelta()
+        glob.session_timer_upload = glob.session_timer
         global_func.show_page('upload session')
-        glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['progress'].grid_remove()
-        glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['abandon_session_btn'].grid_remove()
+        
+        
     else: 
         pass    
+
+def clear_session():
+    glob.update_time_active = False
+    glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['progress'].grid_remove()
+    glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['combobox1'].grid_remove()
+    glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['combobox2'].grid_remove()
+    glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['timer_label'].grid_remove()
+    glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['abandon_session_btn'].grid_remove()
+    glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['finish_upload_session_btn'].grid_remove()
+    glob.session_timer = datetime.timedelta()
+    
 
 def abandon_session():
 
     if messagebox.askokcancel(None, message= 'Abandon Session'):
-        glob.update_time_active = False
-        global_func.show_page("home")
-        glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['progress'].grid_remove()
-        glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['combobox1'].grid_remove()
-        glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['combobox2'].grid_remove()
-        glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['timer_label'].grid_remove()
-        glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['abandon_session_btn'].grid_remove()
-        glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['finish_upload_session_btn'].grid_remove()
-        glob.session_timer = datetime.timedelta()
+        glob.return_obj(glob.st_objs, 'session_st').change_st()
+        
+        global_func.show_page('home')
     else:
         pass
 
