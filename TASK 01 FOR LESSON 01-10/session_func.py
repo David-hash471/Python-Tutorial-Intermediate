@@ -51,25 +51,19 @@ def bar(progress, s):
 
 def start_progressbar(seconds_of_timer):
     
-
     progress = ttk.Progressbar(glob.pages['session'][0], mode= 'indeterminate', orient= 'horizontal')
     if seconds_of_timer != 0:
         progress.configure(mode ='determinate', maximum= seconds_of_timer)
+        glob.session_limit_set = True
         bar(progress, seconds_of_timer)
-        
     else: 
         progress.start()
-
-    progress.place(x = 110, y = 6, width = 280,height = 44)
+    progress.place(x = 110, y = 6, width = 285,height = 44)
     glob.return_obj(glob.rvh_objs, 'session').add_values(progress = progress)
 
 def stop_session():
-    
     if tk.messagebox.askyesno(message = 'Stop session?'):
-        session_complete()
-        
-    else: 
-        pass    
+        session_complete()    
 
 def clear_session():
     glob.update_time_active = False
@@ -95,8 +89,8 @@ def abandon_session():
 
 def start_session_pressed(hrs, mins):
     glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['st_session_btn'].destroy()
-    if hrs.get() == '' and mins.get() == '':
-        glob.session_limit_set = False
+    
+    
     glob.stop_flag = True
     glob.update_time_active = True
     glob.datetime_session_start = datetime.datetime.now()
@@ -109,14 +103,12 @@ def start_session_pressed(hrs, mins):
     pause_time_btn = ttk.Button(glob.pages['session'][0], text= 'Pause', command= lambda: pause_timer_pressed(pause_time_btn))
     pause_time_btn.place(x = 5, y= 5, width= 100, height= 45)
     finish_upload_session_btn = ttk.Button(glob.pages['session'][0], text='Finish & Upload', command= stop_session)
-    finish_upload_session_btn.place(x = 300, y=149, width= 95, height= 46)
+    finish_upload_session_btn.place(x = 295, y=149, width= 100, height= 46)
     time_left_label = ttk.Label(glob.pages['session'][0], text= 'Time Left:')
     time_left_label.place(x = 110, y= 52, width= 90 , height= 48)
     time_pased_label = ttk.Label(glob.pages['session'][0], text= 'Time Pased:')
     time_pased_label.place(x = 110, y= 102, width= 90 , height= 48)
 
-    #thrs = hrs.get()
-    #tmins = mins.get()
     time_left_h = int(hrs.get()) 
     time_left_s = int(mins.get()) 
     seconds_of_timer = time_left_h * 3600 + time_left_s * 60    

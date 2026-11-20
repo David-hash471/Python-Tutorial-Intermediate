@@ -18,7 +18,7 @@ focus_area_txt = ''
 notes_txt = ''
 update_time_active = False
 session_timer_upload = datetime.timedelta()
-session_limit_set = True
+session_limit_set = False
 
 
 
