@@ -4,9 +4,11 @@ import session_func, global_func, uploadSession_func, home_func, globals
 from tkinter import ttk
 import tkinter as tk
 from tkinter import messagebox
+import time
 
 combobox_hours = ['0', '1', '2', '3']
 combobox_minutes = [ f'{minute:02d}' for minute in range(0, 60, 5)]
+update_time_initial_wait = True
 
 
     
@@ -93,29 +95,33 @@ def abandon_session():
     else:
         pass
 
-def start_session_pressed(hrs, mins):
+def start_session_pressed(hrs, mins, st_session_btn):
+    st_session_btn.grid_remove()
+    
+
     glob.stop_flag = True
+    glob.update_time_active = True
     glob.datetime_session_start = datetime.datetime.now()
+
+
     timer_label = ttk.Label(glob.pages['session'][0], text= glob.session_timer)
     timer_label.grid(row= 1, column= 1, sticky= tk.NSEW)
     abandon_session_btn = ttk.Button(glob.pages['session'][0], text= 'Abandon Session', command= abandon_session)
     abandon_session_btn.grid(row=2, column=3, sticky= tk.NSEW)
-    glob.return_obj(glob.rvh_objs, 'session').add_values(abandon_session_btn = abandon_session_btn)
-    glob.update_time_active = True
-    timer_label.after(1000, lambda: update_time(timer_label))
-    start_btn_frame = tk.Frame(glob.pages['session'][0])
-    start_btn_frame.grid(row= 0, column= 0 , sticky= tk.NSEW)
-    stop_time_button = ttk.Button(start_btn_frame, text= 'Pause', command= lambda: pause_timer_pressed(stop_time_button))
+    stop_time_button = ttk.Button(glob.pages['session'][0], text= 'Pause', command= lambda: pause_timer_pressed(stop_time_button))
     stop_time_button.grid(row= 0, column= 0, sticky= tk.NSEW)
     finish_upload_session_btn = ttk.Button(glob.pages['session'][0], text='Finish & Upload', command= lambda: stop_session(finish_upload_session_btn, stop_time_button))
     finish_upload_session_btn.grid(row=3, column=3, sticky= tk.NSEW)
-    glob.return_obj(glob.rvh_objs, 'session').add_values(finish_upload_session_btn = finish_upload_session_btn)
+    
     #stop_time_button.pack() pack is an option if i have already made a frame
-    start_btn_frame.tkraise()
     start_progressbar(hrs, mins)
+    glob.return_obj(glob.rvh_objs, 'session').add_values(abandon_session_btn = abandon_session_btn)
+    glob.return_obj(glob.rvh_objs, 'session').add_values(finish_upload_session_btn = finish_upload_session_btn)
     glob.return_obj(glob.rvh_objs, 'session').add_values(timer_label = timer_label)
     glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['combobox1'].grid_remove()
     glob.return_obj(glob.rvh_objs, 'session').return_kwarg_values()['combobox2'].grid_remove()
+
+    timer_label.after(1000, lambda: update_time(timer_label))
     
         
 
@@ -141,7 +147,8 @@ def setup_session():
     timer_entry_hour.grid(row= 0, column= 1)
     timer_entry_minutes.grid(row= 0, column= 2)
     glob.return_obj(glob.rvh_objs, 'session').add_values(combobox1 = timer_entry_hour, combobox2 = timer_entry_minutes)
-    ttk.Button(glob.pages['session'][0], text = 'start session', command= lambda: session_func.start_session_pressed(timer_entry_hour, timer_entry_minutes)).grid(row= 0, column= 0, sticky= tk.NSEW)
+    st_session_btn = ttk.Button(glob.pages['session'][0], text = 'start session', command= lambda: session_func.start_session_pressed(timer_entry_hour, timer_entry_minutes, st_session_btn))
+    st_session_btn.grid(row= 0, column= 0, sticky= tk.NSEW)
     ttk.Button(glob.pages["session"][0],text="Back",command=lambda: global_func.show_page("home")).grid(row= 3, column= 0, sticky= tk.NSEW)
     
         

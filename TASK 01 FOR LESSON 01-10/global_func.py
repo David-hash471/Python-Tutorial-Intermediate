@@ -23,11 +23,12 @@ def create_pages():
     
     for name in ('session', 'home', 'upload session'):
         page = tk.Frame(glob.root)
-        page.grid(row = 1, column=0, sticky= tk.NSEW)
+        page.grid(row= 0, column=0, sticky= tk.NSEW)
         glob.pages[name] = [page, False]
         
-        for i in range(4):
+        for i in range(7):
             glob.pages[name][0].rowconfigure(i, weight= 1)
+        for i in range(4):
             glob.pages[name][0].columnconfigure(i, weight= 1)
 
 
