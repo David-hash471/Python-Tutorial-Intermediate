@@ -14,21 +14,18 @@ def setup_uploadSession():
     end_time.place(x= 8, y= 72)
     sess_leng = ttk.Label(glob.pages['upload session'][0], text= f'Session Lenght:  {glob.calculate_times()[0]}')
     sess_leng.place(x= 8, y= 104)
-    study_time = ttk.Label(glob.pages['upload session'][0], text= f'Study Time:  {glob.session_timer_upload}')
+    study_time = ttk.Label(glob.pages['upload session'][0], text= f'Study Time:  {glob.calculate_times()[1]}')
     study_time.place(x= 8, y= 136)
-    break_time = ttk.Label(glob.pages['upload session'][0], text= f'Break Time:  {glob.calculate_times()[1]}')
+    break_time = ttk.Label(glob.pages['upload session'][0], text= f'Break Time:  {glob.calculate_times()[2]}')
     break_time.place(x= 8, y= 168)
     ttk.Label(glob.pages['upload session'][0], text= 'Focus Area:').place(x= 140,y= 8, width= 65, height= 20)
     ttk.Label(glob.pages['upload session'][0], text= 'Notes:').place(x= 165,y= 40, width= 50, height= 20)
     focus_area = ttk.Entry(glob.pages['upload session'][0])
     focus_area.place(x= 210,y= 5, width= 185, height= 20)
-    #focus_area.grid(row= 1, column=2, sticky=tk.EW, padx=6, pady=4)
     notes = ttk.Entry(glob.pages['upload session'][0])
     notes.place(x= 210,y= 37, width= 185, height= 20)
-    #notes.grid(row= 2, column=2, sticky=tk.EW, padx=6, pady=4)
     ttk.Button(glob.pages['upload session'][0], text= 'Save', command= lambda: save_session(focus_area, notes)).place(x= 295, y=150 ,width= 100, height= 45)
-    glob.return_obj(glob.rvh_objs,'session').return_kwarg_values()['timer_label'].grid_remove()
-    glob.return_obj(glob.rvh_objs,'session').return_kwarg_values()['finish_upload_session_btn'].grid_remove()
+
 
 
 def save_session(focus_area, notes):
@@ -45,3 +42,4 @@ def save_session(focus_area, notes):
     else:
         global_func.show_page('home')
         glob.session_timer = datetime.timedelta()
+        glob.session_lenght_timer = datetime.timedelta()

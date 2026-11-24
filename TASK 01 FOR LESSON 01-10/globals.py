@@ -4,12 +4,13 @@ import datetime
 
 
 
-rvh_objs = {}
+wc_objs = {}
 st_objs = {}
 root = tk.Tk()
 session_timer = datetime.timedelta()
-stop_flag = True
-progressbar =0
+session_lenght_timer = datetime.timedelta()
+not_paused = True
+progressbar_value =0
 pages = {}
 date_today = datetime.date.today()
 datetime_session_start = None
@@ -19,31 +20,39 @@ notes_txt = ''
 update_time_active = False
 session_timer_upload = datetime.timedelta()
 session_limit_set = False
+start_session_pressed = False
+set_session_len_pressed = False
+set_study_time_pressed = False
+run_progress_bar = False
+
+session_is_indeterminate = True
+
 
 
 
 session_data_structure = ['Date', 'Start Time', 'End Time', 'Session Lenght', 'Study Time', 'Break Time', 'Focus Area', 'Notes']
 
 def calculate_times():
-    
+    session_timer_upload = session_timer
     session_length = datetime_session_end - datetime_session_start
     break_time = session_length - session_timer_upload
     s = int(session_length.total_seconds())
     b = int(break_time.total_seconds())
     session_len = datetime.timedelta(seconds = s)
-    break_t = datetime.timedelta(seconds= b)
-    return [session_len, break_t]
+    break_t = datetime.timedelta(seconds= b -1 )
+    session_timer_upload += datetime.timedelta(seconds= 1)
+    return [session_len, session_timer_upload, break_t]
 
 def session_data():
-    return [date_today,datetime_session_start,datetime_session_end,calculate_times()[0],session_timer_upload,calculate_times()[1], focus_area_txt, notes_txt]
+    return [date_today,datetime_session_start,datetime_session_end,calculate_times()[0],calculate_times()[1],calculate_times()[2], focus_area_txt, notes_txt]
 
 
-class Reset_values_holder:
+class Widget_container:
     def __init__(self, name = None, *args, **kwargs):
             self.name = name
             self.argtuple = args
             self.kwdict = kwargs
-            store_obj(self,rvh_objs,name)
+            store_obj(self,wc_objs,name)
             
     def add_values(self, *args, **kwargs):
         self.argtuple += args

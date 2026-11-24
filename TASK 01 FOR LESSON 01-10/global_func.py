@@ -36,8 +36,9 @@ def show_page(page_name):
             glob.pages[page_name][0].tkraise()
             
         case 'session':
+            session_func.reset_set_choice()
             if not glob.pages['session'][1]:
-                session = glob.Reset_values_holder('session')
+                session = glob.Widget_container('session')
                 session_st = glob.Task('session_st')
                 glob.pages['session'][1] = True
             else:
