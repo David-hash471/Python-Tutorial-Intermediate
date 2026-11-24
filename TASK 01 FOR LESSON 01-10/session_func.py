@@ -4,8 +4,7 @@ import session_func, global_func, uploadSession_func, home_func, globals
 from tkinter import ttk
 import tkinter as tk
 from tkinter import messagebox
-import time
-
+from playsound3 import playsound
 combobox_hours = ['0', '1', '2', '3']
 combobox_minutes = [ f'{minute:02d}' for minute in range(0, 60, 5)]
 update_time_initial_wait = True
@@ -27,7 +26,7 @@ def update_time():
         glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['timer_label'].after(999, update_time)
 
 def session_complete():
-    winsound.Beep(1000, 1000)
+    playsound(r"C:\Users\david\OneDrive\Documents\Personal\David\Projects\Python projects\Python Tutorial\Python-Tutorial-Intermediate\TASK 01 FOR LESSON 01-10\Assets\chime.wav")
     
     glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['pause_time_btn'].destroy()  
     glob.datetime_session_end = datetime.datetime.now()  

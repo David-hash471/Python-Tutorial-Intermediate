@@ -39,6 +39,7 @@ def save_session(focus_area, notes):
             append_object.writerow(glob.session_data()) 
             global_func.show_page('home')
             glob.session_timer = datetime.timedelta()
+            glob.session_lenght_timer = datetime.timedelta()
     else:
         global_func.show_page('home')
         glob.session_timer = datetime.timedelta()
