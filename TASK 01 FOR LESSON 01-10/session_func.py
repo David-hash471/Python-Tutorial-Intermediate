@@ -18,60 +18,67 @@ def update_time():
             
             if glob.set_study_time_pressed and not glob.session_is_indeterminate:
                 glob.session_lenght_timer += datetime.timedelta(seconds= -1)
-                glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['session_length_timer_label'].configure(text = glob.session_lenght_timer)
+                if glob.session_lenght_timer < datetime.timedelta(0):
+                    glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['session_length_timer_label'].configure(text = '0:00:00')
+                else:
+                    glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['session_length_timer_label'].configure(text = glob.session_lenght_timer)
         glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['timer_label'].configure(text = glob.session_timer) 
         if glob.set_session_len_pressed and not glob.session_is_indeterminate:
             glob.session_lenght_timer += datetime.timedelta(seconds= -1)
-            glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['session_length_timer_label'].configure(text = glob.session_lenght_timer)           
+            if glob.session_lenght_timer < datetime.timedelta(0):
+                glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['session_length_timer_label'].configure(text = '0:00:00')
+            else:
+                glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['session_length_timer_label'].configure(text = glob.session_lenght_timer)           
         glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['timer_label'].after(999, update_time)
-
-def session_complete():
+def play_sound():
     playsound(r"C:\Users\david\OneDrive\Documents\Personal\David\Projects\Python projects\Python Tutorial\Python-Tutorial-Intermediate\TASK 01 FOR LESSON 01-10\Assets\chime.wav")
-    
+        
+def session_complete():
     glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['pause_time_btn'].destroy()  
     glob.datetime_session_end = datetime.datetime.now()  
     glob.session_timer_upload = glob.session_timer
     glob.return_obj(glob.st_objs, 'session_st').change_st()
     glob.not_paused = False
-    glob.update_time_active =False    
+    glob.update_time_active =False   
+    glob.pages['session'][0].after(1, play_sound)
     global_func.show_page('upload session')
 
-def bar(s):
+def bar():
     if glob.run_progress_bar:
         if glob.set_session_len_pressed:
             glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] = glob.progressbar_value
             glob.progressbar_value += 1
-            if glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] != (s-1):
-                glob.root.after(1000, lambda: bar(s))
+            if glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] != (glob.seconds_of_timer + 1):
+                glob.root.after(1000, bar)
             else:
                  session_complete()
         elif glob.not_paused:
             glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] = glob.progressbar_value
             glob.progressbar_value += 1
-            if glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] != (s-1):
-                glob.root.after(1000, lambda: bar(s))
+            if glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] != (glob.seconds_of_timer + 1):
+                glob.root.after(1000, bar)
             else:
                 session_complete()
-        elif s == 0 and not glob.not_paused:
+        elif glob.seconds_of_timer == 0 and not glob.not_paused:
             glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress'].stop()
-            glob.root.after(1000, lambda: bar(s))
-        elif s == 0 and glob.not_paused:
+            glob.root.after(1000,  bar)
+        elif glob.seconds_of_timer == 0 and glob.not_paused:
             glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress'].start()
-            glob.root.after(1000, lambda: bar(s))
+            glob.root.after(1000,  bar)
         else:
-            glob.root.after(1000, lambda: bar(s))
+            glob.root.after(1000, bar)
     
 
-def start_progressbar(seconds_of_timer = None):
+def start_progressbar():
     glob.run_progress_bar = True
     progress = ttk.Progressbar(glob.pages['session'][0], mode= 'indeterminate', orient= 'horizontal')
     glob.return_obj(glob.wc_objs, 'session').add_values(progress = progress)
     if glob.session_is_indeterminate:
         progress.start()
     else: 
-        progress.configure(mode ='determinate', maximum= seconds_of_timer)
+        progress.configure(mode ='determinate', maximum= glob.seconds_of_timer)
         glob.session_is_indeterminate = False
-        bar(seconds_of_timer)
+        bar()
     progress.place(x = 110, y = 6, width = 285,height = 44)
     
 
@@ -90,6 +97,8 @@ def clear_session():
     glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['pause_time_btn'].destroy()
     glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['finish_upload_session_btn'].destroy()
     glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['session_length_timer_label'].destroy()
+    if glob.extend_btn_is_made:
+        glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['extend_btn'].destroy()
     glob.session_timer = datetime.timedelta()
     glob.session_lenght_timer = datetime.timedelta()
     glob.update_time_active = False
@@ -98,6 +107,7 @@ def clear_session():
     glob.set_study_time_pressed = False
     glob.start_session_pressed = False
     glob.run_progress_bar =False
+    glob.extend_btn_is_made =False
     
      
     
@@ -110,6 +120,34 @@ def abandon_session():
     else:
         pass
 
+def extend_session():
+    global combobox_minutes
+    glob.extend_seconds = 0
+    if not glob.extend_btn_pressed_in:
+        #pressing extend session to add a time to combo
+        extend_combo = ttk.Combobox(glob.pages['session'][0], values= combobox_minutes)
+        extend_combo.place(x = 295, y = 53, width= 100 , height= 46)
+        extend_combo.set('00')
+        glob.return_obj(glob.wc_objs, 'session').add_values(extend_combo = extend_combo)
+        glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['extend_btn'].configure(text ='Extend')
+        glob.extend_btn_pressed_in = True
+    else:
+        
+        try:
+            min = int(glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['extend_combo'].get())
+            glob.extend_seconds = min * 60
+            glob.session_lenght_timer += datetime.timedelta(seconds = glob.extend_seconds)
+            glob.seconds_of_timer += glob.extend_seconds
+            glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress'].configure(maximum =glob.seconds_of_timer)
+
+        except ValueError:
+            pass
+        glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['extend_btn'].configure(text ='Extend Session')
+        glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['extend_combo'].destroy()
+        glob.extend_btn_pressed_in = False
+
+
+
 
 
 def start_session_pressed():
@@ -117,34 +155,49 @@ def start_session_pressed():
     session_length_timer_label = ttk.Label(glob.pages['session'][0], text= glob.session_lenght_timer)
     timer_label = ttk.Label(glob.pages['session'][0], text= glob.session_timer)
     glob.not_paused = True
+    glob.seconds_of_timer = 0
     if glob.set_session_len_pressed:
-        time_left_h = int(glob.return_obj(glob.wc_objs,'session').return_kwarg_values()['combobox_hr'].get()) 
-        time_left_s = int(glob.return_obj(glob.wc_objs,'session').return_kwarg_values()['combobox_min'].get()) 
-        seconds_of_timer = time_left_h * 3600 + time_left_s * 60  
-        if seconds_of_timer != 0:
+        try:
+            time_left_h = int(glob.return_obj(glob.wc_objs,'session').return_kwarg_values()['combobox_hr'].get()) 
+            time_left_s = int(glob.return_obj(glob.wc_objs,'session').return_kwarg_values()['combobox_min'].get()) 
+            glob.seconds_of_timer = time_left_h * 3600 + time_left_s * 60 
+        except ValueError:
+            glob.session_is_indeterminate = True
+        if glob.seconds_of_timer != 0:
             glob.session_is_indeterminate = False 
-            start_progressbar(seconds_of_timer)
-            glob.session_lenght_timer = datetime.timedelta(seconds= seconds_of_timer)
+            start_progressbar()
+            glob.session_lenght_timer = datetime.timedelta(seconds= glob.seconds_of_timer)
+            extend_btn = ttk.Button(glob.pages['session'][0], text= 'Extend Session', command= extend_session)
+            extend_btn.place(x = 5, y= 53, width=100 ,height =45)
+            glob.return_obj(glob.wc_objs, 'session').add_values(extend_btn =extend_btn)
+            glob.extend_btn_is_made = True
             glob.update_time_active = True 
             timer_label.after(1000,  update_time)
         else:
             glob.session_is_indeterminate = True
             glob.update_time_active =True
             timer_label.after(1000, update_time)
-            start_progressbar(seconds_of_timer)
-    elif glob.set_study_time_pressed:    
-        time_left_h = int(glob.return_obj(glob.wc_objs,'session').return_kwarg_values()['combobox_hr'].get()) 
-        time_left_s = int(glob.return_obj(glob.wc_objs,'session').return_kwarg_values()['combobox_min'].get()) 
-        seconds_of_timer = time_left_h * 3600 + time_left_s * 60  
-        if seconds_of_timer != 0:
+            start_progressbar()
+    elif glob.set_study_time_pressed:   
+        try:
+            time_left_h = int(glob.return_obj(glob.wc_objs,'session').return_kwarg_values()['combobox_hr'].get()) 
+            time_left_s = int(glob.return_obj(glob.wc_objs,'session').return_kwarg_values()['combobox_min'].get()) 
+            glob.seconds_of_timer = time_left_h * 3600 + time_left_s * 60 
+        except ValueError:
+            glob.session_is_indeterminate = True           
+        if glob.seconds_of_timer != 0:
             glob.session_is_indeterminate = False 
-            start_progressbar(seconds_of_timer) 
+            start_progressbar() 
+            extend_btn = ttk.Button(glob.pages['session'][0], text= 'Extend Session', command= extend_session)
+            extend_btn.place(x = 5, y= 53, width=100 ,height =45)
+            glob.return_obj(glob.wc_objs, 'session').add_values(extend_btn =extend_btn)
+            glob.extend_btn_is_made = True
             glob.update_time_active =True
             session_length_timer_label.after(1000, update_time)
-            glob.session_lenght_timer = datetime.timedelta(seconds= seconds_of_timer)
+            glob.session_lenght_timer = datetime.timedelta(seconds= glob.seconds_of_timer)
         else:
             glob.session_is_indeterminate = True
-            start_progressbar(seconds_of_timer)
+            start_progressbar()
             session_length_timer_label.after(1000, update_time)
             glob.update_time_active =True
     else:
@@ -163,7 +216,7 @@ def start_session_pressed():
     session_length_timer_label.place(x= 172, y= 66)
     timer_label.place(x = 212, y = 116)
     abandon_session_btn = ttk.Button(glob.pages['session'][0], text= 'Abandon Session', command= abandon_session)
-    abandon_session_btn.place(x = 5, y = 102 , width= 100, height=46)
+    abandon_session_btn.place(x = 5, y = 101 , width= 100, height=46)
     pause_time_btn = ttk.Button(glob.pages['session'][0], text= 'Pause', command= pause_timer_pressed)
     pause_time_btn.place(x = 5, y= 5, width= 100, height= 45)
     finish_upload_session_btn = ttk.Button(glob.pages['session'][0], text='Finish & Upload', command= stop_session)

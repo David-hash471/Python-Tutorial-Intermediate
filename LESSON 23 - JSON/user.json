@@ -1,0 +1,9 @@
+{
+    "id": 1,
+    "name": "Red",
+    "is_student": true,
+    "courses": [
+        "Python",
+        "Science"
+    ]
+}

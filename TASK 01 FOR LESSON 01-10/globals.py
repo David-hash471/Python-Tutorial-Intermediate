@@ -25,9 +25,11 @@ start_session_pressed = False
 set_session_len_pressed = False
 set_study_time_pressed = False
 run_progress_bar = False
-
+extend_btn_pressed_in = False
 session_is_indeterminate = True
-
+extend_seconds = 0
+extend_btn_is_made = False
+seconds_of_timer = 0
 
 
 
@@ -39,9 +41,9 @@ def calculate_times():
     break_time = session_length - session_timer_upload
     s = int(session_length.total_seconds())
     b = int(break_time.total_seconds())
-    session_len = datetime.timedelta(seconds = s)
-    break_t = datetime.timedelta(seconds= b -1 )
-    session_timer_upload += datetime.timedelta(seconds= 1)
+    session_len = datetime.timedelta(seconds = s - 1)
+    break_t = datetime.timedelta(seconds= b)
+    session_timer_upload += datetime.timedelta(seconds= -1)
     return [session_len, session_timer_upload, break_t]
 
 def session_data():

@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Red",
+        "is_student": true,
+        "courses": [
+            "Python",
+            "Science"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Bob",
+        "is_student": false,
+        "courses": [
+            "Python",
+            "History"
+        ]
+    }
+]
