@@ -45,29 +45,30 @@ def session_complete():
     #glob.pages['session'][0].after(global_func.show_page('upload session'))
 
 def bar():
-    if glob.run_progress_bar:
-        if glob.set_session_len_pressed:
-            glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] = glob.progressbar_value
-            glob.progressbar_value += 1
-            if glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] != (glob.seconds_of_timer + 1):
-                glob.root.after(1000, bar)
+    if glob.update_time_active:
+        if glob.run_progress_bar:
+            if glob.set_session_len_pressed:
+                glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] = glob.progressbar_value
+                glob.progressbar_value += 1
+                if glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] != (glob.seconds_of_timer + 1):
+                    glob.root.after(1000, bar)
+                else:
+                    session_complete()
+            elif glob.not_paused:
+                glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] = glob.progressbar_value
+                glob.progressbar_value += 1
+                if glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] != (glob.seconds_of_timer + 1):
+                    glob.root.after(1000, bar)
+                else:
+                    session_complete()
+            elif glob.seconds_of_timer == 0 and not glob.not_paused:
+                glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress'].stop()
+                glob.root.after(1000,  bar)
+            elif glob.seconds_of_timer == 0 and glob.not_paused:
+                glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress'].start()
+                glob.root.after(1000,  bar)
             else:
-                 session_complete()
-        elif glob.not_paused:
-            glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] = glob.progressbar_value
-            glob.progressbar_value += 1
-            if glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress']['value'] != (glob.seconds_of_timer + 1):
                 glob.root.after(1000, bar)
-            else:
-                session_complete()
-        elif glob.seconds_of_timer == 0 and not glob.not_paused:
-            glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress'].stop()
-            glob.root.after(1000,  bar)
-        elif glob.seconds_of_timer == 0 and glob.not_paused:
-            glob.return_obj(glob.wc_objs, 'session').return_kwarg_values()['progress'].start()
-            glob.root.after(1000,  bar)
-        else:
-            glob.root.after(1000, bar)
     
 
 def start_progressbar():

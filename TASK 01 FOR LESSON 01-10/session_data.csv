@@ -4,3 +4,4 @@
 2026-11-24,2026-11-24 15:41:47.062086,2026-11-24 15:42:50.213331,0:01:03,0:01:00,0:00:03,,
 2026-11-25,2026-11-25 10:15:00.681345,2026-11-25 11:30:28.456378,1:15:26,1:15:03,0:00:23,lesson 24 - Enviromental variable,learnt how to send an email. needs to import email message module ans then create message to send and create sending functionality like login then you send the email
 2026-11-25,2026-11-25 11:44:14.305066,2026-11-25 12:29:28.102199,0:45:12,0:38:31,0:06:41,python,sending emails
+2026-11-25,2026-11-25 14:39:42.039656,2026-11-25 16:00:16.580308,1:20:33,1:18:49,0:01:44,python -> DATABASE and async plus await functions,learnt a bit how to manage a database and how to use async and await functions
