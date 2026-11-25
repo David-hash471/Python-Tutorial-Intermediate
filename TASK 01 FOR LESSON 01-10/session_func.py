@@ -40,8 +40,9 @@ def session_complete():
     glob.return_obj(glob.st_objs, 'session_st').change_st()
     glob.not_paused = False
     glob.update_time_active =False   
-    glob.pages['session'][0].after(1, play_sound)
+    glob.pages['session'][0].after(500, play_sound)
     global_func.show_page('upload session')
+    #glob.pages['session'][0].after(global_func.show_page('upload session'))
 
 def bar():
     if glob.run_progress_bar:
