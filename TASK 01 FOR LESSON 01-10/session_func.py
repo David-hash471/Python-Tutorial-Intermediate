@@ -154,6 +154,7 @@ def extend_session():
 
 def start_session_pressed():
     glob.start_session_pressed = True
+    glob.update_time_active = True
     session_length_timer_label = ttk.Label(glob.pages['session'][0], text= glob.session_lenght_timer)
     timer_label = ttk.Label(glob.pages['session'][0], text= glob.session_timer)
     glob.not_paused = True
