@@ -137,7 +137,7 @@ def demo_linked_list_v2():
     
     tree_readerv2(n1, [])
     
-def tree_reader(node, n):
+def tree_reader1(node, n):
     print(1)
     if node.childnode:
         node = node.childnode[n]
@@ -157,6 +157,12 @@ def tree_reader(node, n):
             tree_reader(node, n +1  )
 
 
+def tree_reader(node):
+    print(f"{node.name} {node.data}")
+
+    for child in node.childnode:
+        tree_reader(child)
+
 
 def tree_readerv2(node, p): #p must be [0] i think
     if not node.childnode:
@@ -165,7 +171,9 @@ def tree_readerv2(node, p): #p must be [0] i think
         else:
             print(f'{node.parentnode.name} {node.name} {node.data}')
             node = node.parentnode
+            print(f'{node.name}')
         for a in range(len(node.childnode)):
+            
             if (p[-1] + 1) == len(node.childnode):
                 if node.parentnode is None:
                     print('super parent')
@@ -175,16 +183,22 @@ def tree_readerv2(node, p): #p must be [0] i think
                     print(f'{node.parentnode.name} {node.name} {node.data}')
             else:
                 p[-1] =  a + 1
+                tree_readerv2(node, p)
                 break
-            tree_readerv2(node, p)
+            
     else:
-        if node.parentnode is None:
-            node = node.childnode[0]
+        if not p:
             p.append(0)
+            node = node.childnode[0]
             tree_readerv2(node, p)
-        else:
+        if p[-1] != 0:
             node = node.childnode[p[-1]]
             tree_readerv2(node, p)
+        else:    
+            node = node.childnode[p[-1]]
+            
+            tree_readerv2(node, p)
+
         
 
         
